@@ -115,14 +115,14 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
             funcs_list = line[2:].split()
             funcs_list[0] = funcs_list[0][1:]
             funcs_list[-1] = funcs_list[0][:-1]
-            print args_list
+            print funcs_list
             print
 
         if line.startswith("Successful program: "):
             funcs_list = line[2:].split()
             funcs_list[0] = funcs_list[0][1:]
             funcs_list[-1] = funcs_list[0][:-1]
-            print args_list
+            print funcs_list
             print
             success = True
 
