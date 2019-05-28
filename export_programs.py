@@ -112,16 +112,16 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
     for line in f:
         if line.startswith("Best program: "):
-            funcs_list = line[2:].split()
+            funcs_list = line.split()[2:]
             funcs_list[0] = funcs_list[0][1:]
-            funcs_list[-1] = funcs_list[0][:-1]
+            funcs_list[-1] = funcs_list[-1][:-1]
             print funcs_list
             print
 
         if line.startswith("Successful program: "):
-            funcs_list = line[2:].split()
+            funcs_list = line.split()[2:]
             funcs_list[0] = funcs_list[0][1:]
-            funcs_list[-1] = funcs_list[0][:-1]
+            funcs_list[-1] = funcs_list[-1][:-1]
             print funcs_list
             print
             success = True
