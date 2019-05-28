@@ -123,6 +123,9 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
             simpl = True
 
         if line.startswith("Test total error for best:"):
-            testForBest = int(line.split()[-1].strip("Nn"))
+            try:
+                testForBest = int(line.split()[-1].strip("Nn"))
+            except ValueError, e:
+                testForBest = float(line.split()[-1].strip("Nn"))
 
     i += 1
