@@ -1,6 +1,7 @@
 import math
 import os
 import sys
+import csv
 
 # Set these before running:
 #Grace Woolson
@@ -82,9 +83,11 @@ outputFileSuffix = ".txt"
 
 # Don't have to change anything below!
 
-verbose = True
-if(len(sys.argv) > 1):
-    verbose = False
+if len(sys.argv) > 0:
+    destination = sys.argv[1]
+else:
+    print("please provide a destination file in the format <filename>.csv")
+    exit(1)
 
 if outputDirectory[-1] != '/':
     outputDirectory += '/'
@@ -92,7 +95,6 @@ dirList = os.listdir(outputDirectory)
 
 i = 0
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
-    gen = 0
 
     fileName = (outputFilePrefix + str(i) + outputFileSuffix)
     f = open(outputDirectory + fileName)
@@ -100,35 +102,26 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
     success = False
     simpl = False
 
-    if verbose:
-        print
-        print "-------------------------------------------------"
-        print "------------------ Run %i ------------------------" % i
-        print
+    #if verbose:
+    #    print
+    #    print "-------------------------------------------------"
+    #    print "------------------ Run %i ------------------------" % i
+    #    print
 
-    testForBest = 5
+    testForBest = 5 # usefulness?
 
     for line in f:
-        #GW below
-        if line.startswith(";; -*- Report "):
-            gen += 1
-
-        if gen == max and line.startswith("Best program: "):
-            if verbose:
-                print line
-                print
+        if line.startswith("Best program: "):
+            print line
+            print
         #GW above
 
         if line.startswith("Successful program: "):
-            if verbose:
-                print line
-                print
-            else:
-                if sys.argv[1] != "test" or testForBest == 0:
-                    print line[len("Successful program: "):-1]
+            print line
+            print
             success = True
 
-        if simpl == True and verbose:
+        if simpl == True:
             print "Simplification after 1000 steps:"
             print line
             break
@@ -136,6 +129,7 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
         if success and line.startswith("step: 1000"):
             simpl = True
 
+        # not used?
         if line.startswith("Test total error for best:"):
             try:
                 testForBest = int(line.split()[-1].strip("Nn"))
