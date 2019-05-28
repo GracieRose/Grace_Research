@@ -87,7 +87,7 @@ if (len(sys.argv) >= 2 and sys.argv[1] == "brief") or \
 outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
 
 
-
+#------------------------------------------------------------------------------------------------------------------------------------------------------------
 ##########################################################################################
 ########################### Parent Selection Experiments v2 ##############################
 ##########################################################################################
@@ -793,7 +793,7 @@ outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/
 #outputDirectory = "Results/wc-new-experiments/UMAD/wc"
 #outputDirectory = "Results/wc-new-experiments/old-atom-gens/UMAD/wc"
 
-
+#-------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -874,6 +874,7 @@ errorThreshold = maxint
 errorThresholdPerCase = maxint
 numCases = maxint
 
+#logi.txt
 fileName0 = (outputFilePrefix + str(i) + outputFileSuffix)
 f0 = open(outputDirectory + fileName0)
 
@@ -886,16 +887,20 @@ for line in f0:
         if errorThreshold == 0:
             errorThresholdPerCase = 0
 
+    #determines the error for the first generation
     if errorThresholdPerCase == maxint and line.startswith("Errors:"):
         numCases = len(line.split()) - 1
         errorThresholdPerCase = float(errorThreshold) / numCases
 
+    # once error threshold is determined for first generation, exit loop
     if errorThresholdPerCase != maxint and numCases != maxint:
         break
 
+# prints without newlines the number of each log
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
     sys.stdout.write("%4i" % i)
     sys.stdout.flush()
+    # inserts newline every 25 items
     if i % 25 == 24:
         print
 
@@ -911,6 +916,7 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
     bestTest = maxint
     simpBestTest = maxint
 
+    #if the file is empty(?) record max results then move to next file
     if os.path.getsize(outputDirectory + fileName) == 0:
         bestFitnessesOfRuns.append((gen, best_mean_error, done))
         testFitnessOfBest.append(bestTest)
@@ -918,8 +924,10 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
         i += 1
         continue
 
+    # reads file bottom-up
     for line in reverse_readline(outputDirectory + fileName):
 
+    	# sets the generation we are at in the file
         if line.startswith(";; -*- Report") and gen == 0:
             gen = int(line.split()[-1])
 
@@ -929,6 +937,7 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
         if line.startswith("SUCCESS"):
             done = "SUCCESS"
 
+        #if no generation succeeds, done=FAILURE
         if line.startswith("FAILURE"):
             done = "FAILURE"
 
