@@ -73,6 +73,8 @@ import sys
 
 ## tournament
 outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+max = 200
+
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
@@ -110,7 +112,7 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
         if line.startswith(";; -*- Report "):
             gen += 1
 
-        if gen == 300 and line.startswith("Best program: "):
+        if gen == max and line.startswith("Best program: "):
             if verbose:
                 print line
                 print
