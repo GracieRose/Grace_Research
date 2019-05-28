@@ -83,7 +83,7 @@ outputFileSuffix = ".txt"
 
 # Don't have to change anything below!
 
-if len(sys.argv) > 0:
+if len(sys.argv) > 1:
     destination = sys.argv[1]
 else:
     print("please provide a destination file in the format <filename>.csv")
@@ -112,12 +112,17 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
     for line in f:
         if line.startswith("Best program: "):
-            print line
+            funcs_list = line[2:].split()
+            funcs_list[0] = funcs_list[0][1:]
+            funcs_list[-1] = funcs_list[0][:-1]
+            print args_list
             print
-        #GW above
 
         if line.startswith("Successful program: "):
-            print line
+            funcs_list = line[2:].split()
+            funcs_list[0] = funcs_list[0][1:]
+            funcs_list[-1] = funcs_list[0][:-1]
+            print args_list
             print
             success = True
 
