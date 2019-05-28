@@ -927,7 +927,8 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
     # reads file bottom-up
     for line in reverse_readline(outputDirectory + fileName):
 
-    	# sets the generation we are at in the file
+    	# sets the last generation in the file as gen 
+    	#(if success, this is the generation that succeeeds)
         if line.startswith(";; -*- Report") and gen == 0:
             gen = int(line.split()[-1])
 
@@ -941,6 +942,7 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
         if line.startswith("FAILURE"):
             done = "FAILURE"
 
+        #finds this generation's mean error
         if line.startswith("Mean:"):
             gen_best_error = -1
             if errorType == "float":
@@ -950,15 +952,18 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
             else:
                 raise Exception("errorType of %s is not recognized" % errorType)
 
+            #it is set as best error if it is lower
             if gen_best_error < best_mean_error:
                 best_mean_error = gen_best_error
 
+        #records the test total error for the last generation
         if line.startswith("Test total error for best:") and done:
             try:
                 bestTest = int(line.split()[-1].strip("Nn"))
             except ValueError, e:
                 bestTest = float(line.split()[-1].strip("Nn"))
 
+        # if successful, records the test total error for the simplified solution
         if line.startswith("Test total error for best:") and not done:
             try:
                 simpBestTest = int(line.split()[-1].strip("Nn"))
@@ -966,8 +971,13 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
                 simpBestTest = float(line.split()[-1].strip("Nn"))
 
 
+    # adds the last generation, best(?) error, and whether it succeeded or failed 
     bestFitnessesOfRuns.append((gen, best_mean_error, done))
+
+    # adds test total error for final solution
     testFitnessOfBest.append(bestTest)
+
+    # adds test total error for simplified solution
     testFitnessOfSimplifiedBest.append(simpBestTest)
             
     i += 1
