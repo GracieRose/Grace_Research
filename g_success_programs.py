@@ -3,49 +3,76 @@ import os
 import sys
 
 # Set these before running:
-#outputDirectory = "Results/GECCO13/mom2/"
-#outputDirectory = "Results/GECCO13/mom2-lexicase/"
-#outputDirectory = "Results/GECCO13/mom2-ultra/"
-#outputDirectory = "Results/GECCO13/mom2-tags/"
-#outputDirectory = "Results/GECCO13/mom2-env/"
-#outputDirectory = "Results/GECCO13/mom2-lex-ultra/"
+#Grace Woolson
+##########################################################################################
+#################################### Novelty Lexicase ####################################
+##########################################################################################
 
-#outputDirectory = "Results/GECCO13/mom3/"
-#outputDirectory = "Results/GECCO13/mom3-lexicase/"
-#outputDirectory = "Results/GECCO13/mom3-ultra/"
-#outputDirectory = "Results/GECCO13/mom3-lex-ultra/"
-
-#outputDirectory = "Results/GECCO13/big-mom3/mom3-lex-ultra/"
-
-#outputDirectory = "Results/GECCO13/mux6-normal/"
-#outputDirectory = "Results/GECCO13/mux6-ultra/"
-
-#outputDirectory = "Results/GECCO13/factorial-normal/"
-#outputDirectory = "Results/GECCO13/factorial-ultra/"
-#outputDirectory = "Results/GECCO13/factorial-ultra-large/"
-#outputDirectory = "Results/GECCO13/factorial-normal-500gens/"
-#outputDirectory = "Results/GECCO13/factorial-ultra-500gens/"
-
-#outputDirectory = "Results/lexicase-paper/ultra/dm3-lex/"
-#outputDirectory = "Results/thesis/change-exploratory/"
-#outputDirectory = "Results/thesis/change-exploratory-2/"
-
-#outputDirectory = "Results/GECCO14/wc/domains-lower-ultra-empties/"
-#outputDirectory = "Results/GECCO14/wc/domains-lower-ultra-padding/"
-#outputDirectory = "Results/GECCO14/wc/padding-max-points-1000/"
-#outputDirectory = "Results/GECCO14/wc/bushy-max-points-1000/"
-#outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-RETRY/"
-outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-two/"
-#outputDirectory = "Results/GECCO14/wc/ultra-params-01-01-100/"
-#outputDirectory = "Results/GECCO14/wc/ultra-params-01-01-0/"
+## genops UMAD
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/mirror-image"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/negative-to-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/replace-space-with-newline"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/scrabble-score"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/syllables"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/vector-average"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/x-word-lines"
 
 
-#outputDirectory = "Results/ULTRA-redo/pagie/ultra/"
-#outputDirectory = "Results/padding-ultra/pagie/padding/"
-#outputDirectory = "Results/padding-ultra/pagie/padding200/"
-#outputDirectory = "Results/padding-ultra/pagie/padding150/"
-#outputDirectory = "Results/padding-ultra/pagie/padding-bug-finding/"
-#outputDirectory = "Results/padding-ultra/pagie/fixed-padding/"
+## genops standard
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/replace-space-with-newline"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/syllables"
+
+
+## gens-1000/genops-UMAD
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-UMAD/replace-space-with-newline"
+
+
+## gens-1000/genops-original
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/compare-string-lengths"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/double-letters"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/last-index-of-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/median"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/mirror-image"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/negative-to-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/pig-latin"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/replace-space-with-newline"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/scrabble-score"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/syllables"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/vector-average"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/x-word-lines"
+
+
+## gens-1000/no-novelty-genops-original
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/compare-string-lengths"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/double-letters"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/last-index-of-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/median"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/mirror-image"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/negative-to-zero"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/pig-latin"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/replace-space-with-newline"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/scrabble-score"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/syllables"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/vector-average"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/x-word-lines"
+
+
+##########################################################################################
+################################## Parent Selection v2 ###################################
+##########################################################################################
+
+## novelty-search
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/double-letters"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines"
+
+
+## tournament
+outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
