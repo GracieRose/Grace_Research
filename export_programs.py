@@ -82,6 +82,11 @@ outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
+verbose = False
+if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
+    verbose = True
+
+
 def deparenthasize(lst):
     for i in range(0, len(lst)):
 
@@ -118,11 +123,12 @@ dirList = os.listdir(outputDirectory)
 i = 0
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
-    print
-    print "--------------------------------------------------"
-    print "------------------ Run %i ------------------------" % i
-    print "--------------------------------------------------"
-    print
+    if verbose:
+        print
+        print "--------------------------------------------------"
+        print "------------------ Run %i ------------------------" % i
+        print "--------------------------------------------------"
+        print
 
     runcount = "Run %i" % i
     destwriter.writerow([runcount])
@@ -142,10 +148,11 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
             funcs_list[-1] = funcs_list[-1][:-1]
             #indicates this program was not a solution
             funcs_list = ["Failed"] + funcs_list
-
-            print funcs_list
             destwriter.writerow(funcs_list)
-            print
+
+            if verbose:
+                print funcs_list
+                print
 
         if line.startswith("Successful program: "):
             #removes "Successful Program"
@@ -155,15 +162,19 @@ while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
             funcs_list[-1] = funcs_list[-1][:-1]
             #indicates this program was a solution
             funcs_list = ["Successful"] + funcs_list
-
-            print funcs_list
-            destwriter.writerow(funcs_list)
-            print
+            destwriter.writerow(funcs_list)   
             success = True
 
+            if verbose:
+                print funcs_list
+                print
+
         if simpl == True:
-            print "Simplification after 1000 steps:"
-            print line
+
+            if verbose:
+                print "Simplification after 1000 steps:"
+                print line
+
             # removes "program"
             funcs_list = line.split()[1:]
             #removes parentheses
