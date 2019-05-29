@@ -73,10 +73,10 @@ import csv
 
 
 ## tournament
-#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
 max = 200
 #Need to find max for each file
-outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
+#outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
