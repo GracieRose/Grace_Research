@@ -73,13 +73,30 @@ import csv
 
 
 ## tournament
-outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
 max = 200
 #Need to find max for each file
-
+outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
+
+
+def deparenthasize(lst):
+    for i in range(0, len(lst)):
+
+        word = lst[i]
+
+        if word[0] == "(":
+            word = word[1:]
+        if word[-1] == ")":
+            word = word[:-1]
+
+        lst[i] == word
+
+    return lst
+
+
 
 # Don't have to change anything below!
 
@@ -89,6 +106,11 @@ else:
     print("please provide a destination file in the format <filename>.csv")
     exit(1)
 
+
+destfile = open(destination, mode="w")
+destwriter = csv.writer(destfile)
+
+
 if outputDirectory[-1] != '/':
     outputDirectory += '/'
 dirList = os.listdir(outputDirectory)
@@ -96,49 +118,63 @@ dirList = os.listdir(outputDirectory)
 i = 0
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
+    print
+    print "--------------------------------------------------"
+    print "------------------ Run %i ------------------------" % i
+    print "--------------------------------------------------"
+    print
+
+    runcount = "Run %i" % i
+    destwriter.writerow([runcount])
+
     fileName = (outputFilePrefix + str(i) + outputFileSuffix)
     f = open(outputDirectory + fileName)
 
     success = False
     simpl = False
 
-    #if verbose:
-    #    print
-    #    print "-------------------------------------------------"
-    #    print "------------------ Run %i ------------------------" % i
-    #    print
-
-    testForBest = 5 # usefulness?
-
     for line in f:
         if line.startswith("Best program: "):
+            # removes "best program"
             funcs_list = line.split()[2:]
+            #removes parentheses
             funcs_list[0] = funcs_list[0][1:]
             funcs_list[-1] = funcs_list[-1][:-1]
+            #indicates this program was not a solution
+            funcs_list = ["Failed"] + funcs_list
+
             print funcs_list
+            destwriter.writerow(funcs_list)
             print
 
         if line.startswith("Successful program: "):
+            #removes "Successful Program"
             funcs_list = line.split()[2:]
+            #removes parentheses
             funcs_list[0] = funcs_list[0][1:]
             funcs_list[-1] = funcs_list[-1][:-1]
+            #indicates this program was a solution
+            funcs_list = ["Successful"] + funcs_list
+
             print funcs_list
+            destwriter.writerow(funcs_list)
             print
             success = True
 
         if simpl == True:
             print "Simplification after 1000 steps:"
             print line
+            # removes "program"
+            funcs_list = line.split()[1:]
+            #removes parentheses
+            funcs_list[0] = funcs_list[0][1:]
+            funcs_list[-1] = funcs_list[-1][:-1]
+            #indicates this program was not a solution
+            funcs_list = ["Simplified:"] + funcs_list
+            destwriter.writerow(funcs_list)
             break
 
         if success and line.startswith("step: 1000"):
             simpl = True
-
-        # not used?
-        if line.startswith("Test total error for best:"):
-            try:
-                testForBest = int(line.split()[-1].strip("Nn"))
-            except ValueError, e: #GW
-                testForBest = float(line.split()[-1].strip("Nn"))
 
     i += 1
