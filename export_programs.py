@@ -73,14 +73,60 @@ import csv
 
 
 ## tournament
-outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
-max = 200
-#Need to find max for each file
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+
+
 #outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
+#outputDirectory = "C:/Users/livel/Desktop/double-letters"
+
+directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-UMAD/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/median",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/pig-latin",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/median",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/pig-latin",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
+
+#directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 
 verbose = False
 if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
@@ -116,76 +162,85 @@ destfile = open(destination, mode="w")
 destwriter = csv.writer(destfile)
 
 
-if outputDirectory[-1] != '/':
-    outputDirectory += '/'
-dirList = os.listdir(outputDirectory)
+for outputDirectory in directories:
 
-i = 0
-while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
+    #category = directories[outputDirectory]
 
-    if verbose:
-        print
-        print "--------------------------------------------------"
-        print "------------------ Run %i ------------------------" % i
-        print "--------------------------------------------------"
-        print
+    if outputDirectory[-1] != '/':
+        outputDirectory += '/'
+    dirList = os.listdir(outputDirectory)
 
-    runcount = "Run %i" % i
-    destwriter.writerow([runcount])
+    #header = [outputDirectory, category]
+    header = [outputDirectory]
 
-    fileName = (outputFilePrefix + str(i) + outputFileSuffix)
-    f = open(outputDirectory + fileName)
+    destwriter.writerow(header)
 
-    success = False
-    simpl = False
+    i = 0
+    while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
-    for line in f:
-        if line.startswith("Best program: "):
-            # removes "best program"
-            funcs_list = line.split()[2:]
-            #removes parentheses
-            funcs_list[0] = funcs_list[0][1:]
-            funcs_list[-1] = funcs_list[-1][:-1]
-            #indicates this program was not a solution
-            funcs_list = ["Failed"] + funcs_list
-            destwriter.writerow(funcs_list)
+        if verbose:
+            print
+            print "--------------------------------------------------"
+            print "------------------ Run %i ------------------------" % i
+            print "--------------------------------------------------"
+            print
 
-            if verbose:
-                print funcs_list
-                print
+        runcount = "Run %i" % i
+        destwriter.writerow([runcount])
 
-        if line.startswith("Successful program: "):
-            #removes "Successful Program"
-            funcs_list = line.split()[2:]
-            #removes parentheses
-            funcs_list[0] = funcs_list[0][1:]
-            funcs_list[-1] = funcs_list[-1][:-1]
-            #indicates this program was a solution
-            funcs_list = ["Successful"] + funcs_list
-            destwriter.writerow(funcs_list)   
-            success = True
+        fileName = (outputFilePrefix + str(i) + outputFileSuffix)
+        f = open(outputDirectory + fileName)
 
-            if verbose:
-                print funcs_list
-                print
+        success = False
+        simpl = False
 
-        if simpl == True:
+        for line in f:
+            if line.startswith("Best program: "):
+                # removes "best program"
+                funcs_list = line.split()[2:]
+                #removes parentheses
+                funcs_list[0] = funcs_list[0][1:]
+                funcs_list[-1] = funcs_list[-1][:-1]
+                #indicates this program was not a solution
+                funcs_list = ["Failed"] + funcs_list
+                destwriter.writerow(funcs_list)
 
-            if verbose:
-                print "Simplification after 1000 steps:"
-                print line
+                if verbose:
+                    print funcs_list
+                    print
 
-            # removes "program"
-            funcs_list = line.split()[1:]
-            #removes parentheses
-            funcs_list[0] = funcs_list[0][1:]
-            funcs_list[-1] = funcs_list[-1][:-1]
-            #indicates this program was not a solution
-            funcs_list = ["Simplified:"] + funcs_list
-            destwriter.writerow(funcs_list)
-            break
+            if line.startswith("Successful program: "):
+                #removes "Successful Program"
+                funcs_list = line.split()[2:]
+                #removes parentheses
+                funcs_list[0] = funcs_list[0][1:]
+                funcs_list[-1] = funcs_list[-1][:-1]
+                #indicates this program was a solution
+                funcs_list = ["Successful"] + funcs_list
+                destwriter.writerow(funcs_list)   
+                success = True
 
-        if success and line.startswith("step: 1000"):
-            simpl = True
+                if verbose:
+                    print funcs_list
+                    print
 
-    i += 1
+            if simpl == True:
+
+                if verbose:
+                    print "Simplification after 1000 steps:"
+                    print line
+
+                # removes "program"
+                funcs_list = line.split()[1:]
+                #removes parentheses
+                funcs_list[0] = funcs_list[0][1:]
+                funcs_list[-1] = funcs_list[-1][:-1]
+                #indicates this program was not a solution
+                funcs_list = ["Simplified:"] + funcs_list
+                destwriter.writerow(funcs_list)
+                break
+
+            if success and line.startswith("step: 1000"):
+                simpl = True
+
+        i += 1
