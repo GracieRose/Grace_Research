@@ -78,7 +78,7 @@ import csv
 
 #outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 #outputDirectory = "C:/Users/livel/Desktop/double-letters"
-"""
+
 directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
@@ -121,31 +121,38 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
-"""
+
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
-directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
+#directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
+#directories = ["C:/Users/livel/Desktop/tournament/number-io"]
+
 
 verbose = False
 if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
     verbose = True
 
 
-def deparenthasize(lst):
-    for i in range(0, len(lst)):
+def debracket(lst):
+    newlist = []
 
-        word = lst[i]
+    for word in lst:
 
-        if word[0] == "(":
-            word = word[1:]
-        if word[-1] == ")":
-            word = word[:-1]
+        newword = word
 
-        lst[i] == word
+        if word[0] == "{":
+            newword = newword[1:]
 
-    return lst
+        if word[-1] == "}":
+            newword = newword[:-1]
+
+        newlist.append(newword)
+
+        #print newword
+
+    return newlist
 
 
 
@@ -177,7 +184,6 @@ for outputDirectory in directories:
 
     i = 0
     while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
-
         if verbose:
             print
             print "--------------------------------------------------"
@@ -193,54 +199,41 @@ for outputDirectory in directories:
 
         success = False
         simpl = False
+        running_error = sys.maxint
 
         for line in f:
-            if line.startswith("Best program: "):
-                # removes "best program"
-                funcs_list = line.split()[2:]
-                #removes parentheses
-                funcs_list[0] = funcs_list[0][1:]
-                funcs_list[-1] = funcs_list[-1][:-1]
-                #indicates this program was not a solution
-                funcs_list = ["Failed"] + funcs_list
-                destwriter.writerow(funcs_list)
+            if line.startswith("Test total error for best:"):
+                try:
+                    running_error = int(line.split()[-1].strip("Nn"))
+                except ValueError, e:
+                    running_error = float(line.split()[-1].strip("Nn"))
+
+                if running_error == 0:
+                    success = True
+
+            if line.startswith("Best genome: "):
+
+                genes_lst = line.split("} ")
+                first = genes_lst[0][14:]
+                last = genes_lst[-1][:-2]
+                mid_lst = genes_lst[1:-1]
+
+                genes_lst = [first] + mid_lst + [last]
+
+                genes_lst = debracket(genes_lst)
+
+                if success:
+                    final = ["Successful"] + genes_lst
+                else:
+                    final = ["Failed"] + genes_lst
+
+                destwriter.writerow(final)
 
                 if verbose:
-                    print funcs_list
+                    print final
                     print
 
-            if line.startswith("Successful program: "):
-                #removes "Successful Program"
-                funcs_list = line.split()[2:]
-                #removes parentheses
-                funcs_list[0] = funcs_list[0][1:]
-                funcs_list[-1] = funcs_list[-1][:-1]
-                #indicates this program was a solution
-                funcs_list = ["Successful"] + funcs_list
-                destwriter.writerow(funcs_list)   
-                success = True
-
-                if verbose:
-                    print funcs_list
-                    print
-
-            if simpl == True:
-
-                if verbose:
-                    print "Simplification after 1000 steps:"
-                    print line
-
-                # removes "program"
-                funcs_list = line.split()[1:]
-                #removes parentheses
-                funcs_list[0] = funcs_list[0][1:]
-                funcs_list[-1] = funcs_list[-1][:-1]
-                #indicates this program was not a solution
-                funcs_list = ["Simplified:"] + funcs_list
-                destwriter.writerow(funcs_list)
-                break
-
-            if success and line.startswith("step: 1000"):
-                simpl = True
+                    if success:
+                        print "Success!"
 
         i += 1
