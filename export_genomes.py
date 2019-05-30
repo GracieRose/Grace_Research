@@ -186,6 +186,8 @@ for outputDirectory in directories:
 
     i = 0
     while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
+        gen = 0
+
         if verbose:
             print
             print "--------------------------------------------------"
@@ -205,6 +207,8 @@ for outputDirectory in directories:
 
         for line in f:
             if line.startswith("Test total error for best:"):
+                print gen
+
                 try:
                     running_error = int(line.split()[-1].strip("Nn"))
                 except ValueError, e:
@@ -212,6 +216,8 @@ for outputDirectory in directories:
 
                 if running_error == 0:
                     success = True
+
+                gen += 1
 
             if line.startswith("Best genome: "):
 
