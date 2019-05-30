@@ -129,7 +129,7 @@ outputFileSuffix = ".txt"
 
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
-directories = ["C:/Users/livel/Desktop/tournament/number-io"]
+directories = ["C:/Users/livel/Desktop/scrabble-score"]
 
 
 verbose = False
@@ -199,6 +199,7 @@ for outputDirectory in directories:
 
         runcount = "Run %i" % i
         destwriter.writerow([runcount])
+        print runcount
 
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
@@ -210,7 +211,7 @@ for outputDirectory in directories:
         for line in f:
             if line.startswith("Test total error for best:"):
                 print gen
-
+                print line
                 try:
                     running_error = int(line.split()[-1].strip("Nn"))
                 except ValueError, e:

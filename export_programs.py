@@ -122,6 +122,52 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
 """
+
+"""
+directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-UMAD/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/median",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/pig-latin",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/compare-string-lengths",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/last-index-of-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/median",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/mirror-image",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/negative-to-zero",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/pig-latin",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/replace-space-with-newline",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/syllables",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/vector-average",
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/double-letters",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"}
+"""
+
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
