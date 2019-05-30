@@ -79,6 +79,7 @@ import csv
 #outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 #outputDirectory = "C:/Users/livel/Desktop/double-letters"
 
+"""
 directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
@@ -121,13 +122,14 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
+"""
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
-#directories = ["C:/Users/livel/Desktop/tournament/number-io"]
+directories = ["C:/Users/livel/Desktop/tournament/number-io"]
 
 
 verbose = False

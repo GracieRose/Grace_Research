@@ -126,7 +126,9 @@ outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
-directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
+#directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
+directories = ["C:/Users/livel/Desktop/tournament/number-io"]
+
 
 verbose = False
 if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
@@ -177,6 +179,7 @@ for outputDirectory in directories:
 
     i = 0
     while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
+        gen = 0
 
         if verbose:
             print
@@ -206,8 +209,11 @@ for outputDirectory in directories:
                 destwriter.writerow(funcs_list)
 
                 if verbose:
+                    print "Gen %i" % gen
                     print funcs_list
                     print
+
+                gen += 1
 
             if line.startswith("Successful program: "):
                 #removes "Successful Program"
@@ -221,6 +227,7 @@ for outputDirectory in directories:
                 success = True
 
                 if verbose:
+                    print "Gen %i" % gen
                     print funcs_list
                     print
 
