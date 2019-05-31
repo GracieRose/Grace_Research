@@ -79,7 +79,7 @@ import csv
 #outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 #outputDirectory = "C:/Users/livel/Desktop/double-letters"
 
-
+"""
 directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
@@ -122,8 +122,8 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
-
 """
+
 directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths" : ["boolean", "comparison", "string-handling"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters" : ["I/O", "string-handling", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero" : ["comparison", "vectors"],
@@ -166,15 +166,13 @@ directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables" : ["I/O", "string-handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines" : ["I/O", "string-handling"],
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io" : ["I/O", "arithmetic"]}
-"""
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
-#directories = ["C:/Users/livel/Desktop/scrabble-score"]
-
+#directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
 
 verbose = False
 if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
@@ -219,14 +217,14 @@ for outputDirectory in directories:
 
     print outputDirectory
 
-    #category = directories[outputDirectory]
+    category = directories[outputDirectory]
 
     if outputDirectory[-1] != '/':
         outputDirectory += '/'
     dirList = os.listdir(outputDirectory)
 
-    #header = [outputDirectory, category]
-    header = [outputDirectory]
+    header = [outputDirectory, category]
+    #header = [outputDirectory]
 
     destwriter.writerow(header)
 
