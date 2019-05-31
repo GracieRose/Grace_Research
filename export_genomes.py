@@ -208,9 +208,12 @@ for outputDirectory in directories:
         simpl = False
         running_error = sys.maxint
 
+        prev_line = ""
         for line in f:
+
             if line.startswith("Test total error for best:"):
                 print gen
+                print prev_line
                 print line
                 try:
                     running_error = int(line.split()[-1].strip("Nn"))
@@ -246,5 +249,7 @@ for outputDirectory in directories:
 
                     if success:
                         print "Success!"
+
+            prev_line = line
 
         i += 1
