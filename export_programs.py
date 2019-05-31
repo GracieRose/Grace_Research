@@ -212,6 +212,8 @@ destwriter = csv.writer(destfile)
 
 for outputDirectory in directories:
 
+    print outputDirectory
+
     category = directories[outputDirectory]
 
     if outputDirectory[-1] != '/':
