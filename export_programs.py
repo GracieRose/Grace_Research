@@ -244,9 +244,13 @@ for outputDirectory in directories:
 
         success = False
         simpl = False
+        funcs_list = []
 
         for line in f:
             if line.startswith("Best program: "):
+                if funcs_list != []:
+                    destwriter.writerow(funcs_list)
+
                 # removes "best program"
                 funcs_list = line.split()[2:]
                 #removes parentheses
@@ -254,7 +258,6 @@ for outputDirectory in directories:
                 funcs_list[-1] = funcs_list[-1][:-1]
                 #indicates this program was not a solution
                 funcs_list = ["Failed"] + funcs_list
-                destwriter.writerow(funcs_list)
 
                 if verbose:
                     print "Gen %i" % gen
@@ -265,12 +268,7 @@ for outputDirectory in directories:
 
             if line.startswith("Successful program: "):
                 #removes "Successful Program"
-                funcs_list = line.split()[2:]
-                #removes parentheses
-                funcs_list[0] = funcs_list[0][1:]
-                funcs_list[-1] = funcs_list[-1][:-1]
-                #indicates this program was a solution
-                funcs_list = ["Successful"] + funcs_list
+                funcs_list[0] = "Successful"
                 destwriter.writerow(funcs_list)   
                 success = True
 
