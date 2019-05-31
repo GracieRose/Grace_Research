@@ -79,7 +79,7 @@ import csv
 #outputDirectory = "C:/Users/livel/Desktop/tournament/number-io"
 #outputDirectory = "C:/Users/livel/Desktop/double-letters"
 
-"""
+
 directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters",
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero",
@@ -122,14 +122,14 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines",
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"]
-"""
+
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
-directories = ["C:/Users/livel/Desktop/scrabble-score"]
+#directories = ["C:/Users/livel/Desktop/scrabble-score"]
 
 
 verbose = False
@@ -199,7 +199,7 @@ for outputDirectory in directories:
 
         runcount = "Run %i" % i
         destwriter.writerow([runcount])
-        print runcount
+        #print runcount
 
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
@@ -212,9 +212,9 @@ for outputDirectory in directories:
         for line in f:
 
             if line.startswith("Test total error for best:"):
-                print gen
-                print prev_line
-                print line
+                #print gen
+                #print prev_line
+                #print line
                 try:
                     running_error = int(line.split()[-1].strip("Nn"))
                 except ValueError, e:
