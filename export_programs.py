@@ -220,8 +220,8 @@ for outputDirectory in directories:
         outputDirectory += '/'
     dirList = os.listdir(outputDirectory)
 
-    header = [outputDirectory, category]
-    #header = [outputDirectory]
+    header = [category]
+    #header = [outputDirectory, category]
 
     destwriter.writerow(header)
 
@@ -257,7 +257,7 @@ for outputDirectory in directories:
                 funcs_list[0] = funcs_list[0][1:]
                 funcs_list[-1] = funcs_list[-1][:-1]
                 #indicates this program was not a solution
-                funcs_list = ["Failed"] + funcs_list
+                funcs_list = ["Failed"] + deparenthasize(funcs_list)
 
                 if verbose:
                     print "Gen %i" % gen
