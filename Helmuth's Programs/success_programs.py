@@ -35,7 +35,7 @@ import sys
 #outputDirectory = "Results/GECCO14/wc/padding-max-points-1000/"
 #outputDirectory = "Results/GECCO14/wc/bushy-max-points-1000/"
 #outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-RETRY/"
-outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-two/"
+#outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-two/"
 #outputDirectory = "Results/GECCO14/wc/ultra-params-01-01-100/"
 #outputDirectory = "Results/GECCO14/wc/ultra-params-01-01-0/"
 
@@ -46,6 +46,7 @@ outputDirectory = "Results/GECCO14/wc/empties-max-points-1000-two/"
 #outputDirectory = "Results/padding-ultra/pagie/padding150/"
 #outputDirectory = "Results/padding-ultra/pagie/padding-bug-finding/"
 #outputDirectory = "Results/padding-ultra/pagie/fixed-padding/"
+outputDirectory = "C:/Users/livel/Desktop/syllables/"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"

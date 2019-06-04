@@ -174,6 +174,7 @@ outputFileSuffix = ".txt"
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 #directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
+directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string-handling", "arithmetic"]}
 
 
 verbose = False
@@ -182,18 +183,37 @@ if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
 
 
 def deparenthasize(lst):
+
+    newlst = []
+        
     for i in range(0, len(lst)):
 
         word = lst[i]
+        #print "Before: %s" % word
+        done = False
 
-        if word[0] == "(":
-            word = word[1:]
-        if word[-1] == ")":
-            word = word[:-1]
+        while not done:
+            if word == "(":
+                word = "" 
+            elif word[0] == "(":
+                word = word[1:]
+            if len(word) > 0 and word[-1] == ")":
+                word = word[:-1]
 
-        lst[i] == word
+            if len(word) > 0:
+                if word[0] == "(" or word[-1] == ")":
+                    done = False
+                else:
+                    done = True
+            else:
+                done = True
 
-    return lst
+        if not word == "":
+            newlst.append(word)
+
+        #print "After: %s" % word
+
+    return newlst
 
 
 
@@ -251,13 +271,14 @@ for outputDirectory in directories:
                 if funcs_list != []:
                     destwriter.writerow(funcs_list)
 
+                #print line
                 # removes "best program"
                 funcs_list = line.split()[2:]
                 #removes parentheses
                 funcs_list[0] = funcs_list[0][1:]
                 funcs_list[-1] = funcs_list[-1][:-1]
                 #indicates this program was not a solution
-                funcs_list = ["Failed"] + funcs_list
+                funcs_list = ["Failed"] + deparenthasize(funcs_list)
 
                 if verbose:
                     print "Gen %i" % gen
@@ -269,6 +290,7 @@ for outputDirectory in directories:
             if line.startswith("Successful program: "):
                 #removes "Successful Program"
                 funcs_list[0] = "Successful"
+                funcs_list = deparenthasize(funcs_list)
                 destwriter.writerow(funcs_list)   
                 success = True
 
@@ -289,7 +311,7 @@ for outputDirectory in directories:
                 funcs_list[0] = funcs_list[0][1:]
                 funcs_list[-1] = funcs_list[-1][:-1]
                 #indicates this program was not a solution
-                funcs_list = ["Simplified:"] + funcs_list
+                funcs_list = ["Simplified:"] + deparenthasize(funcs_list)
                 destwriter.writerow(funcs_list)
                 break
 

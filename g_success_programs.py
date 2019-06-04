@@ -72,7 +72,8 @@ import sys
 
 
 ## tournament
-outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+#outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
+file = "C:/Users/livel/Desktop/Research/cat_best_programs.csv"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
@@ -82,7 +83,7 @@ outputFileSuffix = ".txt"
 verbose = True
 if(len(sys.argv) > 1):
     verbose = False
-
+"""
 if outputDirectory[-1] != '/':
     outputDirectory += '/'
 dirList = os.listdir(outputDirectory)
@@ -90,42 +91,19 @@ dirList = os.listdir(outputDirectory)
 i = 0
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
-    fileName = (outputFilePrefix + str(i) + outputFileSuffix)
-    f = open(outputDirectory + fileName)
+    fileName = (outputFilePrefix + str(i) + outputFileSuffix)"""
+f = open(file)
 
-    success = False
-    simpl = False
+success = False
+simpl = False
 
-    if verbose:
-        print
-        print "-------------------------------------------------"
-        print "------------------ Run %i ------------------------" % i
-        print
+for line in f:
 
-    testForBest = 5
-
-    for line in f:
-        if line.startswith("Successful program: "):
-            if verbose:
-                print line
-                print
-            else:
-                if sys.argv[1] != "test" or testForBest == 0:
-                    print line[len("Successful program: "):-1]
-            success = True
-
-        if simpl == True and verbose:
-            print "Simplification after 1000 steps:"
+    if line.startswith("Successful"):
+        if verbose:
             print line
-            break
-
-        if success and line.startswith("step: 1000"):
-            simpl = True
-
-        if line.startswith("Test total error for best:"):
-            try:
-                testForBest = int(line.split()[-1].strip("Nn"))
-            except ValueError, e:
-                testForBest = float(line.split()[-1].strip("Nn"))
-
-    i += 1
+            print
+        else:
+            if sys.argv[1] != "test" or testForBest == 0:
+                print line[len("Successful program: "):-1]
+        success = True
