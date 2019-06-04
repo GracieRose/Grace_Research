@@ -122,7 +122,7 @@ for line in f:
         all_programs.append(program)
 
         for tag in tags:
-            if tag == "IO":
+            if tag == "I/O":
                 IO.append(program)
             elif tag == "arithmetic":
                 arithmetic.append(program)
