@@ -195,7 +195,7 @@ def deparenthasize(lst):
         while not done:
             if word == "(":
                 word = "" 
-            elif word[0] == "(":
+            elif len(word) > 0 and word[0] == "(":
                 word = word[1:]
             if len(word) > 0 and word[-1] == ")":
                 word = word[:-1]

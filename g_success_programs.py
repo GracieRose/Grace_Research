@@ -92,6 +92,20 @@ i = 0
 while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
     fileName = (outputFilePrefix + str(i) + outputFileSuffix)"""
+
+all_programs = []
+IO = []
+arithmetic = []
+comparison = []
+boolean = []
+string_handling = []
+vectors = []
+file = []
+
+
+final = [all_programs, IO, arithmetic, comparison, boolean, string_handling, vectors, file]
+
+    
 f = open(file)
 
 success = False
