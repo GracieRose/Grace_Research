@@ -166,8 +166,8 @@ for outputDirectory in directories:
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
 
-        success = False
-        simpl = False
+        #success = False
+        #simpl = False
         funcs_list = []
 
         for line in f:
@@ -196,13 +196,13 @@ for outputDirectory in directories:
                 funcs_list[0] = "Successful"
                 funcs_list = deparenthasize(funcs_list)
                 destwriter.writerow(funcs_list)   
-                success = True
+                #success = True
 
                 if verbose:
                     print "Gen %i" % gen
                     print funcs_list
                     print
-
+            """
             if simpl == True:
 
                 if verbose:
@@ -221,5 +221,6 @@ for outputDirectory in directories:
 
             if success and line.startswith("step: 1000"):
                 simpl = True
+            """
 
         i += 1

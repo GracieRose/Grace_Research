@@ -1,6 +1,19 @@
 import os, stat
 
 ##########################################################################
+# Settings
+"""number_runs = 10
+
+clojush_directory = "/home/thelmuth/Clojush/"
+output_directory = "/home/thelmuth/Results/odd/"
+
+example_file = "clojush.problems.demos.odd"
+
+title_string = "Test of cluster runs with odd problem"
+"""
+
+
+##########################################################################
 # Uncomment the following if you want to print timings in the logs
 #example_file += " :print-timings true"
 
@@ -9,13 +22,12 @@ import os, stat
 output_prefix = "log"
 output_postfix = ".txt"
 
-command = "/share/apps/bin/lein with-profiles production trampoline run " + example_file
+#command = "/share/apps/bin/lein with-profiles production trampoline run " + example_file
 
-#don't change
 service_tag = "tom"
 
 ##########################################################################
-# You don't need to change anything below here
+output_directory = "/home/gwoolson/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
 if output_directory[-1] != "/":
