@@ -112,11 +112,27 @@ tags = []
 
 for line in f:
 
-    if type(eval(line)) == list:
-        tags = eval(line)
+    if line[1] == "[":
+        tags = line[3:-4].split("', '")
         print tags
 
     if line.startswith("Successful"):
-        if verbose:
-            print line
-            print
+
+        program = line[:-1].split(",")[1:]
+        all_programs.append(program)
+
+        for tag in tags:
+            if tag == "IO":
+                IO.append(program)
+            elif tag == "arithmetic":
+                arithmetic.append(program)
+            elif tag == "comparison":
+                comparison.append(program)
+            elif tag == "boolean":
+                boolean.append(program)
+            elif tag == "string_handling":
+                string_handling.append(program)
+            elif tag == "vectors":
+                vectors.append(program)
+            elif tag == "file":
+                file.append(program)
