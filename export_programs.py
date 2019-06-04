@@ -174,7 +174,7 @@ outputFileSuffix = ".txt"
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 #directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
-directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string-handling", "arithmetic"]}
+#directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string-handling", "arithmetic"]}
 
 
 verbose = False
