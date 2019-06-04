@@ -124,47 +124,47 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
 """
 
 
-directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths" : ["boolean", "comparison", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters" : ["I/O", "string-handling", "comparison"],
+directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths" : ["boolean", "comparison", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters" : ["I/O", "string_handling", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero" : ["comparison", "vectors"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/mirror-image" : ["vectors", "boolean", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/negative-to-zero" : ["vectors", "comparison"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/replace-space-with-newline" : ["string-handling", "I/O", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/scrabble-score" : ["string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/syllables" : ["I/O", "string-handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/replace-space-with-newline" : ["string_handling", "I/O", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/scrabble-score" : ["string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/syllables" : ["I/O", "string_handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/vector-average" : ["vectors", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/x-word-lines" : ["I/O", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/replace-space-with-newline" : ["string-handling", "I/O", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/syllables" : ["I/O", "string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-UMAD/replace-space-with-newline" : ["string-handling", "I/O", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/compare-string-lengths" : ["boolean", "comparison", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/double-letters" : ["I/O", "string-handling", "comparison"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/x-word-lines" : ["I/O", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/replace-space-with-newline" : ["string_handling", "I/O", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-standard/syllables" : ["I/O", "string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-UMAD/replace-space-with-newline" : ["string_handling", "I/O", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/compare-string-lengths" : ["boolean", "comparison", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/double-letters" : ["I/O", "string_handling", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/last-index-of-zero" : ["comparison", "vectors"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/median" : ["I/O", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/mirror-image" : ["vectors", "boolean", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/negative-to-zero" : ["vectors", "comparison"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/pig-latin" : ["I/O", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/replace-space-with-newline" : ["string-handling", "I/O", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/scrabble-score" : ["string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/syllables" : ["I/O", "string-handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/pig-latin" : ["I/O", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/replace-space-with-newline" : ["string_handling", "I/O", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/scrabble-score" : ["string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/syllables" : ["I/O", "string_handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/vector-average" : ["vectors", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/x-word-lines" : ["I/O", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/compare-string-lengths" : ["boolean", "comparison", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/double-letters" : ["I/O", "string-handling", "comparison"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/genops-original/x-word-lines" : ["I/O", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/compare-string-lengths" : ["boolean", "comparison", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/double-letters" : ["I/O", "string_handling", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/last-index-of-zero" : ["comparison", "vectors"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/median" : ["I/O", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/mirror-image" : ["vectors", "boolean", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/negative-to-zero" : ["vectors", "comparison"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/pig-latin" : ["I/O", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/replace-space-with-newline" : ["string-handling", "I/O", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/scrabble-score" : ["string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/syllables" : ["I/O", "string-handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/pig-latin" : ["I/O", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/replace-space-with-newline" : ["string_handling", "I/O", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/scrabble-score" : ["string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/syllables" : ["I/O", "string_handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/vector-average" : ["vectors", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/x-word-lines" : ["I/O", "string-handling"],
-                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/double-letters" : ["I/O", "string-handling", "comparison"],
-                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score" : ["string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables" : ["I/O", "string-handling", "arithmetic"],
-                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines" : ["I/O", "string-handling"],
+                "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/gens-1000/no-novelty-genops-original/x-word-lines" : ["I/O", "string_handling"],
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/double-letters" : ["I/O", "string_handling", "comparison"],
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score" : ["string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables" : ["I/O", "string_handling", "arithmetic"],
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines" : ["I/O", "string_handling"],
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io" : ["I/O", "arithmetic"]}
 
 
@@ -174,7 +174,7 @@ outputFileSuffix = ".txt"
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 #directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
-#directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string-handling", "arithmetic"]}
+#directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string_handling", "arithmetic"]}
 
 
 verbose = False

@@ -73,7 +73,7 @@ import sys
 
 ## tournament
 #outputDirectory = "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io"
-file = "C:/Users/livel/Desktop/Research/cat_best_programs.csv"
+inputfile = "C:/Users/livel/Desktop/Research/cat_best_programs.csv"
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
@@ -106,18 +106,17 @@ file = []
 final = [all_programs, IO, arithmetic, comparison, boolean, string_handling, vectors, file]
 
     
-f = open(file)
+f = open(inputfile)
 
-success = False
-simpl = False
+tags = []
 
 for line in f:
+
+    if type(eval(line)) == list:
+        tags = eval(line)
+        print tags
 
     if line.startswith("Successful"):
         if verbose:
             print line
             print
-        else:
-            if sys.argv[1] != "test" or testForBest == 0:
-                print line[len("Successful program: "):-1]
-        success = True
