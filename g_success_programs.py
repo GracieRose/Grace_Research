@@ -2,6 +2,8 @@ import math
 import os
 import sys
 
+
+#maybe change this to make each list a file
 def success_only():
     inputfiles = ["C:/Users/livel/Desktop/Research/cat_best_programs.csv", "C:/Users/livel/Desktop/Research/fly_best_programs.csv"]
 
@@ -31,7 +33,6 @@ def success_only():
 
             if line[1] == "[":
                 tags = line[3:-4].split("', '")
-                print tags
 
             if line.startswith("Successful"):
 
