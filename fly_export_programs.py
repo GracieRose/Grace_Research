@@ -68,7 +68,7 @@ directories = {"/home/thelmuth/Results/clustering-bench/checksum/lexicase/logs/"
                 "/home/thelmuth/Results/clustering-bench/vector-average/lexicase/logs/" : ["vectors", "arithmetic"],
                 "/home/thelmuth/Results/clustering-bench/vectors-summed/lexicase/logs/" : ["vectors", "arithmetic"],
                 "/home/thelmuth/Results/clustering-bench/wallis-pi/lexicase/logs/" : ["arithmetic"],
-                "/home/thelmuth/Results/clustering-bench/word-stats/lexicase/logs/" : ["file", "I/O", "string_handling", "arithmetic"]
+                "/home/thelmuth/Results/clustering-bench/word-stats/lexicase/logs/" : ["file", "I/O", "string_handling", "arithmetic"],
                 "/home/thelmuth/Results/clustering-bench/x-word-lines/lexicase/logs/" : ["I/O", "string_handling"]}
 
 
