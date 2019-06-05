@@ -3,6 +3,11 @@ import os
 import sys
 
 
+def print_prog(program):
+    for element in program:
+        print element
+
+
 #maybe change this to make each list a file
 def success_only():
     inputfiles = ["C:/Users/livel/Desktop/Research/cat_best_programs.csv", "C:/Users/livel/Desktop/Research/fly_best_programs.csv"]
@@ -30,16 +35,22 @@ def success_only():
         tags = []
 
         for line in f:
+            #print line
 
             if line[1] == "[":
                 tags = line[3:-4].split("', '")
+                #print line
 
             if line.startswith("Successful"):
 
+                #print line
+
                 program = line[:-1].split(",")[1:]
                 all_programs.append(program)
+                #print_prog(program)
 
                 for tag in tags:
+                    #print tag
                     if tag == "I/O":
                         IO.append(program)
                     elif tag == "arithmetic":
