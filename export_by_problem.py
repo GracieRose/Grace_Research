@@ -251,7 +251,7 @@ for outputDirectory in directories:
         outputDirectory += '/'
     dirList = os.listdir(outputDirectory)
 
-    header = [problem]
+    header = [[problem]]
     #header = [outputDirectory, category]
 
     destwriter.writerow(header)
