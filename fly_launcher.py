@@ -43,7 +43,8 @@ if os.path.isdir(output_directory):
 os.mkdir(output_directory)
 
 # Make alf file
-alf_file_string = output_directory + "clojush_runs.alf"
+#alf_file_string = output_directory + "clojush_runs.alf"
+alf_file_string = output_directory + "clojush_scraping.alf"
 alf_f = open(alf_file_string, "w")
 
 alfcode = """##AlfredToDo 3.0
@@ -52,7 +53,7 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %s;" % (clojush_directory)
+    intro_command = "echo Starting run; cd %s;" % (clojush_directory) #?
     outro_command = " > %s%s%i%s; echo Finished Run" % (output_directory, output_prefix, run, output_postfix)
 
     full_command = intro_command + command + outro_command
