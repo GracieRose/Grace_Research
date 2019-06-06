@@ -240,8 +240,6 @@ for outputDirectory in directories:
 
     print outputDirectory
 
-    category = directories[outputDirectory]
-
     problem = ""
     for topic in problems:
         if topic in outputDirectory:
@@ -268,7 +266,6 @@ for outputDirectory in directories:
             print
 
         runcount = "Run %i" % i
-        destwriter.writerow([runcount])
 
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
