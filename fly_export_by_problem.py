@@ -101,6 +101,8 @@ directories = {"/home/thelmuth/Results/clustering-bench/checksum/lexicase/logs/"
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
+problems = ["number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
+
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 #directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
