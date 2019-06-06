@@ -196,8 +196,8 @@ for outputDirectory in directories:
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
 
-        #success = False
-        #simpl = False
+        success = False
+        simpl = False
         funcs_list = []
 
         for line in f:
