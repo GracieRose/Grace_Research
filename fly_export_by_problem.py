@@ -147,13 +147,16 @@ for outputDirectory in directories:
 
     print outputDirectory
 
-    category = directories[outputDirectory]
+    problem = ""
+    for topic in problems:
+        if topic in outputDirectory:
+                problem = topic
 
     if outputDirectory[-1] != '/':
         outputDirectory += '/'
     dirList = os.listdir(outputDirectory)
 
-    header = [category]
+    header = [[problem]]
     #header = [outputDirectory, category]
 
     destwriter.writerow(header)
@@ -170,7 +173,6 @@ for outputDirectory in directories:
             print
 
         runcount = "Run %i" % i
-        destwriter.writerow([runcount])
 
         fileName = (outputFilePrefix + str(i) + outputFileSuffix)
         f = open(outputDirectory + fileName)
@@ -180,6 +182,7 @@ for outputDirectory in directories:
         funcs_list = []
 
         for line in f:
+            """
             if line.startswith("Lexicase best program: "):
                 if funcs_list != []:
                     destwriter.writerow(funcs_list)
@@ -220,10 +223,16 @@ for outputDirectory in directories:
 
                 gen += 1
 
+            """
+
             if line.startswith("Successful program: "):
                 #removes "Successful Program"
-                funcs_list[0] = "Successful"
-                funcs_list = deparenthasize(funcs_list)
+                funcs_list = line.split()[2:]
+                #removes parentheses
+                funcs_list[0] = funcs_list[0][1:]
+                funcs_list[-1] = funcs_list[-1][:-1]
+                #indicates this program was a solution
+                funcs_list = ["Successful"] + deparenthasize(funcs_list)
                 destwriter.writerow(funcs_list)   
                 #success = True
 
@@ -231,7 +240,7 @@ for outputDirectory in directories:
                     print "Gen %i" % gen
                     print funcs_list
                     print
-            """
+            
             if simpl == True:
 
                 if verbose:
@@ -250,6 +259,5 @@ for outputDirectory in directories:
 
             if success and line.startswith("step: 1000"):
                 simpl = True
-            """
 
         i += 1
