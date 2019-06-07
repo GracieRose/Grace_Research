@@ -11,6 +11,8 @@ example_file = "clojush.problems.demos.odd"
 
 title_string = "Test of cluster runs with odd problem"
 """
+
+
 title_string = "Data collection of function frequencies in programs throughout a GP run"
 
 description = """A collection of compact csv data files representing program
@@ -26,6 +28,11 @@ counts of all individuals in evolutionary runs """
 #output_postfix = ".txt"
 output_prefix = "run"
 output_postfix = ".csv"
+
+
+zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/count-odds/lexicase/csv/data"
+zip_end1 = ".csv.tar.gz"
+
 
 #command = "/share/apps/bin/lein with-profiles production trampoline run " + example_file
 
@@ -53,8 +60,9 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %s;" % (clojush_directory) #?
-    outro_command = " > %s%s%i%s; echo Finished Run" % (output_directory, output_prefix, run, output_postfix)
+    intro_command = "echo Starting run; cd Grace_Research/; %s%i%s;" % (zip_start1, run, zip_end1)
+    command = "python fly_export.py run%i.csv /home/gwoolson/Grace_Research;" % (run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
 

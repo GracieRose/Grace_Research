@@ -149,6 +149,7 @@ def collect():
 
     if len(sys.argv) > 1:
         destination = sys.argv[1]
+        i = int(destination[3])
     else:
         print("please provide a destination file in the format <filename>.csv")
         exit(1)
@@ -162,7 +163,7 @@ def collect():
 
     if outputDirectory[-1] != '/':
         outputDirectory += '/'
-    dirList = os.listdir(outputDirectory)
+    #dirList = os.listdir(outputDirectory)
 
     problem = ""
     for topic in problems:
@@ -177,59 +178,44 @@ def collect():
     all_genomes = []
 
     #CHANGE THIS
-    i = 0
-    while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
-        gen = 0
+    #while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
-        if verbose:
-            print
-            print "--------------------------------------------------"
-            print "------------------ Run %i ------------------------" % i
-            print "--------------------------------------------------"
-            print
+    fileName = (outputFilePrefix + str(i) + outputFileSuffix)
+    f = open(outputDirectory + fileName)
 
-        runcount = "Run %i" % i
-        #destwriter.writerow([runcount])
-        #print runcount
-
-        fileName = (outputFilePrefix + str(i) + outputFileSuffix)
-        f = open(outputDirectory + fileName)
-
-        success = False
-        simpl = False
-        running_error = sys.maxint
+    success = False
+    simpl = False
+    running_error = sys.maxint
 
 
-        for line in f:
+    for line in f:
 
-            if not line.startswith("uuid"):
-                #the first line always starts with uuid I THINK************************
-                
-                #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
-                genes_line = line.split(",")[7:]
-                genes_line = ",".join(genes_line)[1:].split()
-                end = genes_line[-1]
+        if not line.startswith("uuid"):
+            #the first line always starts with uuid I THINK************************
+            
+            #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
+            genes_line = line.split(",")[7:]
+            genes_line = ",".join(genes_line)[1:].split()
+            end = genes_line[-1]
 
-                genes_line = genes_line[:-1]
-                end_instr = end.split(",")[0][:-1]
+            genes_line = genes_line[:-1]
+            end_instr = end.split(",")[0][:-1]
 
-                end = end.split(",")[1:]
+            end = end.split(",")[1:]
 
-                genes_line.append(end_instr)
+            genes_line.append(end_instr)
 
-                genes_line = debracket(deparenthasize(genes_line))
+            genes_line = debracket(deparenthasize(genes_line))
 
-                for i in range(0, len(genes_line) - 1):
-                    if genes_line[i] == ":instruction":
-                        func = genes_line[i + 1]
-                        if not func in all_funcs:
-                            all_funcs.append(func)
-
-
-                all_genomes.append((genes_line, end))
+            for i in range(0, len(genes_line) - 1):
+                if genes_line[i] == ":instruction":
+                    func = genes_line[i + 1]
+                    if not func in all_funcs:
+                        all_funcs.append(func)
 
 
-        i += 1
+            all_genomes.append((genes_line, end))
+
 
     freqs = stats(all_genomes, all_funcs)
 
