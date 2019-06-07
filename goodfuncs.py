@@ -46,10 +46,12 @@ def check_if_constant(instruction):
 
 
 def get_funcs_list(organized_programs):
+	"""Returns a list of all functions that may be of significance for one or more tags"""
 	problems = ["all_programs", "number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
 
 	all_funcs = []
 
+	#iterates through all problems to collect the most used functions for each category
 	for prob in problems:
 
 		if prob == "all_programs":
@@ -142,12 +144,16 @@ def get_funcs_list(organized_programs):
 		if prob == "x-word-lines":
 			programs = organized_programs[29]
 
+		#the maximum amount of times a fxn can occur is once per program
 		max_frequency = len(programs)
 		freqs = {}
 
+		#goes throuhgh each program that solved the problem
 		for program in programs:
+
+			#keeps track of if we have counted this fxn in this program yet
 			this_run = []
-			#print_prog(program)
+
 			for func in program:
 				#ACCOUNTS FOR CONSTANTS
 				is_constant = check_if_constant(func)
@@ -158,7 +164,7 @@ def get_funcs_list(organized_programs):
 					else:
 						freqs[func] = 1
 
-
+		#if function appears more than 60% of the time, it may be of importance
 		max_threshold = round(max_frequency * .6)
 		if max_threshold > 0:
 
@@ -173,6 +179,9 @@ def get_funcs_list(organized_programs):
 
 
 def goodfuncs1():
+	"""Calculates the frequency of each function that is returned by get_funcs_list for each tag, then
+	writes that data to a CSV
+	Frequency is calculated as number of programs that contain that function, not number of occurances of that function"""
 
 	tags = {"I/O" : ["number-io", "checksum", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "median", "negative-to-zero", "pig-latin", "replace-space-with-newline", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "syllables", "word-stats", "x-word-lines"],
 			"arithmetic" : ["number-io", "checksum", "collatz-numbers", "count-odds", "digits", "even-squares", "for-loop-index", "replace-space-with-newline", "scrabble-score", "sum-of-squares", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats"],
@@ -189,6 +198,7 @@ def goodfuncs1():
 	vectors = []
 	all_programs = []
 
+	#keeps track of how many problems are in each category so that the averages can be calculated
 	iocount = 0
 	arithcount = 0
 	compcount = 0
@@ -196,27 +206,30 @@ def goodfuncs1():
 	strcount = 0
 	vectorcount = 0
 
+	#ensures the user provides a csv file to write to
 	if len(sys.argv) > 1:
 	    destination = sys.argv[1]
 	else:
 	    print("please provide a destination file in the format <filename>.csv")
 	    exit(1)
 
-
 	destfile = open(destination, mode="w")
 	destwriter = csv.writer(destfile)
 
+	#a list of lists; a master list containing lists of programs broken down by problem they solve
 	organized_programs = success_only()
 
 
 	#I removed file from this list because no program with that tag has succeeded, providing no data
 	problems = ["all_programs", "number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
 
+	#all functions that had a frequency of .6 or higher for at least one problem
 	all_funcs = get_funcs_list(organized_programs)
 
+	#gets the data for each of the above functions for each problem
 	for prob in problems:
 
-		print prob
+		#print prob
 
 		if prob == "all_programs":
 			programs = organized_programs[0]
@@ -308,9 +321,11 @@ def goodfuncs1():
 		if prob == "x-word-lines":
 			programs = organized_programs[29]
 
+		#maximum number of occurances is equal to the number of programs
 		max_frequency = len(programs)
 		freqs = {}
 
+		#calculates the number of occurances
 		for program in programs:
 			this_run = []
 			#print_prog(program)
@@ -326,15 +341,22 @@ def goodfuncs1():
 
 
 		max_threshold = round(max_frequency * .6)
+
+		#only does the rest if there are any solution programs for the problem in question
 		if max_threshold > 0:
 
+			print prob
 			print "Max possible occurances: %i" % max_frequency
 			print "Max Threshold is: %i" % max_threshold
 			print
 
-
+			#iterates over all functions in all_funcs
 			for i in range(0, len(all_funcs)):
+
 				function = all_funcs[i]
+
+				#if this function doesn't occur in this problem, we must set frequency to zero
+				# otherwise, it is the number of times the function occurs over the total number of programs
 				if function in freqs:
 					frequency = round((freqs[function] / float(max_frequency)), 2)
 				else:
@@ -343,8 +365,9 @@ def goodfuncs1():
 				if prob == "all_programs":
 					all_programs.append(frequency)
 
+				#if this is the first IO problem, the the list will be empty so we simply append
+				#if it isn't, then the list already contains an entry for each func so we add to each entry
 				if prob in tags["I/O"]:
-					#print i
 					if len(IO) - 1 < i:
 						IO.append(frequency)
 					else:
@@ -399,29 +422,25 @@ def goodfuncs1():
 						vectorcount += 1
 
 
+	#goes through each list and calculates the average frequency
 	for a in range(0, len(all_funcs)):
 		element = IO[a]
 		IO[a] = element / iocount
 
-	for b in range(0, len(all_funcs)):
-		element = arithmetic[b]
-		arithmetic[b] = element / arithcount
+		element = arithmetic[a]
+		arithmetic[a] = element / arithcount
 
-	for c in range(0, len(all_funcs)):
-		element = comparison[c]
-		comparison[c] = element / compcount
+		element = comparison[a]
+		comparison[a] = element / compcount
 
-	for d in range(0, len(all_funcs)):
-		element = boolean[d]
-		boolean[d] = element / boolcount
+		element = boolean[a]
+		boolean[a] = element / boolcount
 
-	for e in range(0, len(all_funcs)):
-		element = string_handling[e]
-		string_handling[e] = element / strcount
+		element = string_handling[a]
+		string_handling[a] = element / strcount
 
-	for f in range(0, len(all_funcs)):
-		element = vectors[f]
-		vectors[f] = element / vectorcount
+		element = vectors[a]
+		vectors[a] = element / vectorcount
 
 	destwriter.writerow(["Problem"] + all_funcs)
 	destwriter.writerow(["IO"] + IO)
@@ -435,7 +454,9 @@ def goodfuncs1():
 
 
 def goodfuncs2():
-
+	"""Calculates the frequency of each function that is returned by get_funcs_list for each tag, then
+	writes that data to a CSV, separated by tag.
+	Frequency is calculated as number of programs that contain that function, not number of occurances of that function"""
 	tags = {"I/O" : ["number-io", "checksum", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "median", "negative-to-zero", "pig-latin", "replace-space-with-newline", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "syllables", "word-stats", "x-word-lines"],
 			"arithmetic" : ["number-io", "checksum", "collatz-numbers", "count-odds", "digits", "even-squares", "for-loop-index", "replace-space-with-newline", "scrabble-score", "sum-of-squares", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats"],
 			"comparison" : ["collatz-numbers", "compare-string-lengths", "double-letters", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "small-or-large", "smallest","string-differences", "super-anagrams"],
@@ -665,25 +686,20 @@ def goodfuncs2():
 		element = IO[a]
 		IO[a] = element / iocount
 
-	for b in range(0, len(all_funcs)):
-		element = arithmetic[b]
-		arithmetic[b] = element / arithcount
+		element = arithmetic[a]
+		arithmetic[a] = element / arithcount
 
-	for c in range(0, len(all_funcs)):
-		element = comparison[c]
-		comparison[c] = element / compcount
+		element = comparison[a]
+		comparison[a] = element / compcount
 
-	for d in range(0, len(all_funcs)):
-		element = boolean[d]
-		boolean[d] = element / boolcount
+		element = boolean[a]
+		boolean[a] = element / boolcount
 
-	for e in range(0, len(all_funcs)):
-		element = string_handling[e]
-		string_handling[e] = element / strcount
+		element = string_handling[a]
+		string_handling[a] = element / strcount
 
-	for f in range(0, len(all_funcs)):
-		element = vectors[f]
-		vectors[f] = element / vectorcount
+		element = vectors[a]
+		vectors[a] = element / vectorcount
 
 	destwriter.writerow(["Problem"] + all_funcs)
 	destwriter.writerow(["IO"] + IO)
