@@ -2,8 +2,8 @@ import os, stat
 
 ##########################################################################
 # Settings
-"""number_runs = 10
-
+number_runs = 100
+"""
 clojush_directory = "/home/thelmuth/Clojush/"
 output_directory = "/home/thelmuth/Results/odd/"
 
