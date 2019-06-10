@@ -102,11 +102,14 @@ def stats(all_genomes, funcs):
     freqs = {}
     count = 0
 
+    "Calculating stats"
+
     for (genome, errors) in all_genomes:
-        count += 1
 
         #only collects data for programs that completely fail*************************
         if not "0" in errors:
+            this_run = []
+            count += 1
 
             for i in range(0, len(genome) - 1):
                 word = genome[i]
@@ -114,7 +117,8 @@ def stats(all_genomes, funcs):
                 if word == ":instruction":
                     func = genome[i+1]
                     is_constant = check_if_constant(func)
-                    if not is_constant:
+                    if (not is_constant) and (not func in this_run):
+                        this_run.append(func)
                         if func in freqs:
                             freqs[func] += 1
                         else:
@@ -122,8 +126,12 @@ def stats(all_genomes, funcs):
                         
 
     for key in freqs:
+        print key, freqs[key]
         freqs[key] = round((freqs[key] / float(count)), 2)
+        print freqs[key]
+        print
 
+    print "Total number of programs: ", count
 
     return freqs
 
@@ -159,34 +167,30 @@ def collect():
     destwriter = csv.writer(destfile)
 
     #I want to use the problem, not the tags
-    #category = directories[outputDirectory] ##UPDATE********************************************************8
+    #category = directories[outputDirectory]
 
     if outputDirectory[-1] != '/':
         outputDirectory += '/'
     #dirList = os.listdir(outputDirectory)
 
-    problem = ""
+    """problem = ""
     for topic in problems:
         if topic in outputDirectory:
                 problem = topic
 
 
     header = [problem]
-    destwriter.writerow(header)
+    destwriter.writerow(header)"""  #this is useless
 
     all_funcs = []
     all_genomes = []
 
-    #CHANGE THIS
-    #while (outputFilePrefix + str(i) + outputFileSuffix) in dirList:
 
     fileName = (outputFilePrefix + str(i) + outputFileSuffix)
     f = open(outputDirectory + fileName)
 
     success = False
     simpl = False
-    running_error = sys.maxint
-
 
     for line in f:
 
@@ -194,6 +198,8 @@ def collect():
             #the first line always starts with uuid I THINK************************
             
             #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
+            #print "ITERATING"
+
             genes_line = line.split(",")[7:]
             genes_line = ",".join(genes_line)[1:].split()
             end = genes_line[-1]
@@ -210,12 +216,14 @@ def collect():
             for i in range(0, len(genes_line) - 1):
                 if genes_line[i] == ":instruction":
                     func = genes_line[i + 1]
+                    #print func
                     if not func in all_funcs:
                         all_funcs.append(func)
 
 
             all_genomes.append((genes_line, end))
 
+    print "Finished Reading File"
 
     freqs = stats(all_genomes, all_funcs)
 

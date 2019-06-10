@@ -11,8 +11,16 @@ def print_prog(program):
 
 def check_if_constant(instruction):
 
-	is_constant = False
-	numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+	is_constant = True
+
+	instr_types = ["autoconstructive", "boolean", "char", "code", "environment", "exec", "float", "genome", "gtm", "integer", "noop", "print", "return", "string", "vector", "zip"]
+
+	for category in instr_types:
+		if instruction.startswith(category):
+			is_constant = False
+			break
+
+	"""numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 
 	#booleans
 	if instruction == "true" or instruction == "false":
@@ -39,7 +47,7 @@ def check_if_constant(instruction):
 
 	#vectors
 	if instruction[0] == "[":
-		is_constant = True
+		is_constant = True"""
 
 
 	return is_constant
@@ -164,16 +172,16 @@ def get_funcs_list(organized_programs):
 					else:
 						freqs[func] = 1
 
-		#if function appears more than 60% of the time, it may be of importance
+		"""#if function appears more than 60% of the time, it may be of importance
 		max_threshold = round(max_frequency * .6)
-		if max_threshold > 0:
+		if max_threshold > 0:"""
 
-			interesting = {}
+		#interesting = {}
 
-			for key in freqs:
-				if (freqs[key] >= max_threshold):
-					if not key in all_funcs:
-						all_funcs.append(key)
+		for key in freqs:
+			#if (freqs[key] >= max_threshold):
+			if not key in all_funcs:
+				all_funcs.append(key)
 
 	return all_funcs
 
@@ -343,7 +351,7 @@ def goodfuncs1():
 		max_threshold = round(max_frequency * .6)
 
 		#only does the rest if there are any solution programs for the problem in question
-		if max_threshold > 0:
+		if max_frequency > 0:
 
 			print prob
 			print "Max possible occurances: %i" % max_frequency
@@ -358,7 +366,7 @@ def goodfuncs1():
 				#if this function doesn't occur in this problem, we must set frequency to zero
 				# otherwise, it is the number of times the function occurs over the total number of programs
 				if function in freqs:
-					frequency = round((freqs[function] / float(max_frequency)), 2)
+					frequency = (freqs[function] / float(max_frequency))
 				else:
 					frequency = 0.0
 
@@ -609,7 +617,7 @@ def goodfuncs2():
 
 
 		max_threshold = round(max_frequency * .6)
-		if max_threshold > 0:
+		if max_frequency > 0:
 
 			print "Max possible occurances: %i" % max_frequency
 			print "Max Threshold is: %i" % max_threshold
@@ -619,7 +627,7 @@ def goodfuncs2():
 			for i in range(0, len(all_funcs)):
 				function = all_funcs[i]
 				if function in freqs:
-					frequency = round((freqs[function] / float(max_frequency)), 2)
+					frequency = (freqs[function] / float(max_frequency))
 				else:
 					frequency = 0.0
 
@@ -724,7 +732,7 @@ def goodfuncs2():
 
 def main():
 
-	goodfuncs2()
+	goodfuncs1()
 
 if __name__ == '__main__':
 	main()

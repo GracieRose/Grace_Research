@@ -39,7 +39,7 @@ zip_end1 = ".csv.tar.gz"
 service_tag = "tom"
 
 ##########################################################################
-output_directory = "/home/gwoolson/csvdata"
+output_directory = "/home/gwoolson/csvdata_count-odds"
 
 # Check to make sure directory doesn't exist; if not, create it
 if output_directory[-1] != "/":
@@ -60,7 +60,7 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd Grace_Research/; %s%i%s;" % (zip_start1, run, zip_end1)
+    intro_command = "echo Starting run; %s%i%s;" % (zip_start1, run, zip_end1)
     command = "python fly_export.py run%i.csv /home/gwoolson/Grace_Research;" % (run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
