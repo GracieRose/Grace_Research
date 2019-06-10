@@ -1,5 +1,4 @@
 # Grace Woolson, Summer 2019
-import math
 import os
 import sys
 import csv
@@ -148,7 +147,7 @@ def collect():
 
 
     verbose = False
-    if len(sys.argv) >= 3:
+    if len(sys.argv) > 2:
         #outputDirectory = "C:/Users/livel/Desktop/Research"
         outputDirectory = sys.argv[2]
     else:

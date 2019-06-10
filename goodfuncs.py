@@ -13,7 +13,7 @@ def check_if_constant(instruction):
 
 	is_constant = True
 
-	instr_types = ["autoconstructive", "boolean", "char", "code", "environment", "exec", "float", "genome", "gtm", "integer", "noop", "print", "return", "string", "vector", "zip"]
+	instr_types = ["in", "autoconstructive", "boolean", "char", "code", "environment", "exec", "float", "genome", "gtm", "integer", "noop", "print", "return", "string", "vector", "zip"]
 
 	for category in instr_types:
 		if instruction.startswith(category):
