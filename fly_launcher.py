@@ -60,8 +60,8 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd /home/gwoolson/Grace_Research/; export PYTHONHOME=usr/bin; PYTHONPATH=/share/apps/python-3.6/bin/:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages; %s%i%s;" % (zip_start1, run, zip_end1)
-    command = "python fly_export.py run%i.csv /home/gwoolson/Grace_Research;" % (run)
+    intro_command = "echo Starting run; cd /home/gwoolson/count-odds/; %s%i%s; cd /home/gwoolson/Grace_Research/;" % (zip_start1, run, zip_end1)
+    command = "python fly_export.py run%i.csv /home/gwoolson/count-odds/;" % (run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
