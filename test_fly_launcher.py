@@ -62,7 +62,7 @@ Job -title {%s} -subtasks {
 for run in range(0, number_runs):
     intro_command = "echo Starting run; cd /home/gwoolson/Grace_Research/;"
     command = "python flytest.py;"
-    outro_command = "echo Finished Run" % (run)
+    outro_command = "echo Finished Run"
 
     full_command = intro_command + command + outro_command
 
