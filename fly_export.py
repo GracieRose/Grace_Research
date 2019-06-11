@@ -7,35 +7,14 @@ import csv
 
 def check_if_constant(instruction):
 
-    is_constant = False
-    numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    is_constant = True
 
-    #booleans
-    if instruction == "true" or instruction == "false":
-        is_constant = True
+    instr_types = ["in", "autoconstructive", "boolean", "char", "code", "environment", "exec", "float", "genome", "gtm", "integer", "noop", "print", "return", "string", "vector", "zip"]
 
-    #integers/floats
-    if instruction[0] in numbers:
-        is_constant = True
-
-    if instruction[0] == "-":
-        is_constant = True
-
-    #tags
-    if instruction[:3] == "tag":
-        is_constant = True
-
-    #characters
-    if instruction[0] == "\\":
-        is_constant = True
-
-    #strings
-    if instruction[0] == '\"':
-        is_constant = True
-
-    #vectors
-    if instruction[0] == "[":
-        is_constant = True
+    for category in instr_types:
+        if instruction.startswith(category):
+            is_constant = False
+            break
 
 
     return is_constant
@@ -194,7 +173,7 @@ def collect():
     for line in f:
 
         if not line.startswith("uuid"):
-            #the first line always starts with uuid I THINK************************
+            #the first line always starts with uuid************************
             
             #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
             #print "ITERATING"
