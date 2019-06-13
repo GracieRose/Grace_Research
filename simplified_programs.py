@@ -9,7 +9,7 @@ def print_prog(program):
 
 
 #maybe change this to make each list a file
-def success_only():
+def simp_success_only():
     inputfiles = ["C:/Users/livel/Desktop/Research/cat_best_programs.csv", "C:/Users/livel/Desktop/Research/fly_best_programs.csv"]
 
     verbose = True
@@ -181,7 +181,7 @@ def success_only():
 
 def main():
 
-    categorized_programs = success_only()
+    categorized_programs = simp_success_only()
 
 
 if __name__ == '__main__':
