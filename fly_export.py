@@ -130,12 +130,11 @@ def collect():
         #outputDirectory = "C:/Users/livel/Desktop/Research"
         outputDirectory = sys.argv[2]
     else:
-        print "Please provide an directory"
+        print "Please provide a file to open"
         exit(1)
 
     if len(sys.argv) > 1:
         destination = sys.argv[1]
-        i = int(destination[3])
     else:
         print("please provide a destination file in the format <filename>.csv")
         exit(1)
@@ -147,8 +146,8 @@ def collect():
     #I want to use the problem, not the tags
     #category = directories[outputDirectory]
 
-    if outputDirectory[-1] != '/':
-        outputDirectory += '/'
+    """if outputDirectory[-1] != '/':
+        outputDirectory += '/'"""
     #dirList = os.listdir(outputDirectory)
 
     """problem = ""
@@ -164,8 +163,8 @@ def collect():
     all_genomes = []
 
 
-    fileName = (outputFilePrefix + str(i) + outputFileSuffix)
-    f = open(outputDirectory + fileName)
+    #fileName = (outputFilePrefix + str(i) + outputFileSuffix)
+    f = open(outputDirectory)
 
     success = False
     simpl = False
