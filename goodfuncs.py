@@ -1,7 +1,7 @@
 import sys
 import csv
 from success_by_problem import success_only
-#from simplified_programs import success_only
+from simplified_programs import simp_success_only
 
 
 def print_prog(program):
@@ -19,36 +19,6 @@ def check_if_constant(instruction):
 		if instruction.startswith(category):
 			is_constant = False
 			break
-
-	"""numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
-
-	#booleans
-	if instruction == "true" or instruction == "false":
-		is_constant = True
-
-	#integers/floats
-	if instruction[0] in numbers:
-		is_constant = True
-
-	if instruction[0] == "-":
-		is_constant = True
-
-	#tags
-	if instruction[:3] == "tag":
-		is_constant = True
-
-	#characters
-	if instruction[0] == "\\":
-		is_constant = True
-
-	#strings
-	if instruction[0] == '\"':
-		is_constant = True
-
-	#vectors
-	if instruction[0] == "[":
-		is_constant = True"""
-
 
 	return is_constant
 
@@ -224,8 +194,8 @@ def goodfuncs1():
 	destwriter = csv.writer(destfile)
 
 	#a list of lists; a master list containing lists of programs broken down by problem they solve
-	organized_programs = success_only()
-
+	#organized_programs = success_only()
+	organized_programs = simp_success_only()
 
 	#I removed file from this list because no program with that tag has succeeded, providing no data
 	problems = ["all_programs", "number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
@@ -468,6 +438,7 @@ def goodfuncs2():
 			"string_handling" : ["checksum", "compare-string-lengths", "digits", "double-letters", "pig-latin", "replace-space-with-newline", "scrabble-score", "string-differences", "string-lengths-backwards", "super-anagrams", "syllables", "word-stats", "x-word-lines"],
 			"vectors" : ["count-odds", "last-index-of-zero", "mirror-image", "negative-to-zero", "string-lengths-backwards", "vector-average", "vectors-summed"]}
 
+	#contains frequencies of all functions
 	IO = []
 	arithmetic = []
 	comparison = []
@@ -476,15 +447,13 @@ def goodfuncs2():
 	vectors = []
 	all_programs = []
 
-
-	iofuncs = []
-	arithfuncs = []
-	compfuncs = []
-	boolfuncs = []
-	strfuncs = []
-	vectorfuncs = []
-	all_prog_funcs = []
-
+	#tracks number of successful problems in the category
+	iocount = 0
+	arithcount = 0
+	compcount = 0
+	boolcount = 0
+	strcount = 0
+	vectorcount = 0
 
 	if len(sys.argv) > 1:
 	    destination = sys.argv[1]
@@ -505,8 +474,6 @@ def goodfuncs2():
 	all_funcs = get_funcs_list(organized_programs)
 
 	for prob in problems:
-
-		print prob
 
 		if prob == "all_programs":
 			programs = organized_programs[0]
@@ -617,6 +584,7 @@ def goodfuncs2():
 
 		if max_frequency > 0:
 
+			print prob
 			print "Max possible occurances: %i" % max_frequency
 			print
 
@@ -626,9 +594,69 @@ def goodfuncs2():
 				if function in freqs:
 					frequency = (freqs[function] / float(max_frequency))
 				else:
-					frequency = 0.0	
+					frequency = 0.0
 
-				#I can almost guarantee this is not the best way to do this
+
+				if prob == "all_programs":
+					all_programs.append(frequency)
+
+
+				#if this is the first IO problem, the the list will be empty so we simply append
+				#if it isn't, then the list already contains an entry for each func so we add to each entry
+				if prob in tags["I/O"]:
+					if len(IO) - 1 < i:
+						IO.append(frequency)
+					else:
+						IO[i] = IO[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						iocount += 1
+
+				if prob in tags["arithmetic"]:
+					if len(arithmetic) - 1 < i:
+						arithmetic.append(frequency)
+					else:
+						arithmetic[i] = arithmetic[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						arithcount += 1
+
+				if prob in tags["comparison"]:
+					if len(comparison) - 1 < i:
+						comparison.append(frequency)
+					else:
+						comparison[i] = comparison[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						compcount += 1
+
+				if prob in tags["boolean"]:
+					if len(boolean) - 1 < i:
+						boolean.append(frequency)
+					else:
+						boolean[i] = boolean[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						boolcount += 1
+
+				if prob in tags["string_handling"]:
+					if len(string_handling) - 1 < i:
+						string_handling.append(frequency)
+					else:
+						string_handling[i] = string_handling[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						strcount += 1
+
+				if prob in tags["vectors"]:
+					if len(vectors) - 1 < i:
+						vectors.append(frequency)
+					else:
+						vectors[i] = vectors[i] + frequency
+
+					if i == len(all_funcs) - 1:
+						vectorcount += 1
+				"""#I can almost guarantee this is not the best way to do this
 				if prob == "all_programs":
 					all_programs.append(frequency)
 					all_prog_funcs.append(function)
@@ -636,10 +664,8 @@ def goodfuncs2():
 				if prob in tags["I/O"]:
 					if not function in iofuncs:
 						IO.append(frequency)
-						iofuncs.append(function)						
 					else:
-						loc = iofuncs.index(function)
-						IO[loc] = IO[loc] + frequency
+						IO[i] = IO[i] + frequency
 
 				
 				if prob in tags["arithmetic"]:
@@ -687,18 +713,88 @@ def goodfuncs2():
 						vectors[loc] = vectors[loc] + frequency
 
 
+
 	#calculated by earlier edition of this program, should be double checked
 	iocount = 8
 	arithcount = 6
 	compcount = 6
 	boolcount = 2
 	strcount = 7
-	vectorcount = 6
+	vectorcount = 6"""
 
-	for a in range(0, len(IO)):
+	#will only contain those funcs with 60% or higher frequency
+	iofuncs = []
+	arithfuncs = []
+	compfuncs = []
+	boolfuncs = []
+	strfuncs = []
+	vectorfuncs = []
+	all_prog_funcs = []
+
+	newio = []
+	newarith = []
+	newcomp = []
+	newbool = []
+	newstr = []
+	newvectors = []
+	new_all_progs = []
+
+
+	for a in range(0, len(all_funcs)):
 		element = IO[a]
 		IO[a] = element / iocount
-		if IO[a] >= .6
+		if IO[a] > 0.6:
+			iofuncs.append(all_funcs[a])
+			newio.append(IO[a])
+
+		element = arithmetic[a]
+		arithmetic[a] = element / arithcount
+		if arithmetic[a] > 0.6:
+			arithfuncs.append(all_funcs[a])
+			newarith.append(arithmetic[a])
+
+		element = comparison[a]
+		comparison[a] = element / compcount
+		if comparison[a] > 0.6:
+			compfuncs.append(all_funcs[a])
+			newcomp.append(comparison[a])
+
+		element = boolean[a]
+		boolean[a] = element / boolcount
+		if boolean[a] > 0.6:
+			boolfuncs.append(all_funcs[a])
+			newbool.append(boolean[a])
+
+		element = string_handling[a]
+		string_handling[a] = element / strcount
+		if string_handling[a] > 0.6:
+			strfuncs.append(all_funcs[a])
+			newstr.append(string_handling[a])
+
+		element = vectors[a]
+		vectors[a] = element / vectorcount
+		if vectors[a] > 0.6:
+			vectorfuncs.append(all_funcs[a])
+			newvectors.append(vectors[a])
+
+
+		element = all_programs[a]
+		if all_programs[a] > 0.6:
+			all_prog_funcs.append(all_funcs[a])
+			new_all_progs.append(all_programs[a])
+
+	"""for a in range(0, len(IO)):
+		element = IO[a]
+		IO[a] = element / iocount
+		if IO[a] <= .6:
+			freqfirst = IO[:a]
+			freqrest = IO[a+1:]
+			IO = freqfirst + freqrest
+
+			funcfirst = iofuncs[:a]
+			funcrest = iofuncs[a+1:]
+			iofuncs = funcfirst + funcrest
+
 
 	for b in range(0, len(arithmetic)):
 		element = arithmetic[b]
@@ -718,33 +814,33 @@ def goodfuncs2():
 
 	for f in range(0, len(vectors)):
 		element = vectors[f]
-		vectors[f] = element / vectorcount
+		vectors[f] = element / vectorcount"""
 
+
+	destwriter.writerow(["Tag"] + all_prog_funcs)
+	destwriter.writerow(["All Programs"] + new_all_progs)
 
 	destwriter.writerow(["Tag"] + iofuncs)
-	destwriter.writerow(["IO"] + IO)
+	destwriter.writerow(["IO"] + newio)
 
 	destwriter.writerow(["Tag"] + arithfuncs)
-	destwriter.writerow(["Arithmetic"] + arithmetic)
+	destwriter.writerow(["Arithmetic"] + newarith)
 
 	destwriter.writerow(["Tag"] + compfuncs)
-	destwriter.writerow(["Comparison"] + comparison)
+	destwriter.writerow(["Comparison"] + newcomp)
 
 	destwriter.writerow(["Tag"] + boolfuncs)
-	destwriter.writerow(["Boolean"] + boolean)
+	destwriter.writerow(["Boolean"] + newbool)
 	
 	destwriter.writerow(["Tag"] + strfuncs)
-	destwriter.writerow(["String Handling"] + string_handling)
+	destwriter.writerow(["String Handling"] + newstr)
 
 	destwriter.writerow(["Tag"] + vectorfuncs)
-	destwriter.writerow(["Vectors"] + vectors)
-
-	destwriter.writerow(["Tag"] + all_funcs)
-	destwriter.writerow(["All Programs"] + all_programs)
+	destwriter.writerow(["Vectors"] + newvectors)
 
 def main():
 
-	goodfuncs2()
+	goodfuncs1()
 
 if __name__ == '__main__':
 	main()
