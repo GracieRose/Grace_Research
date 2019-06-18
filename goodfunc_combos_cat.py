@@ -45,6 +45,7 @@ def simplify(program):
 
 
 def significance(f1, f2, freqs, pairs):
+
 	significant = False
 
 	#if abs(freqs[f1] - freqs[f2]) < 30:
@@ -63,7 +64,7 @@ def significance(f1, f2, freqs, pairs):
 	if f1 == "in2" or f2 == "in2":
 		significant = False
 
-	return True
+	return significant
 
 
 
@@ -106,6 +107,7 @@ def calculate_distances(all_progs):
 
 
 def simplified_pairs():
+
 	if len(sys.argv) > 1:
 	    destination = sys.argv[1]
 	else:
@@ -116,102 +118,107 @@ def simplified_pairs():
 	destwriter = csv.writer(destfile)
     #final = [all_programs, number_io, checksum, collatz_numbers, compare_string_lengths, count_odds, digits, double_letters, even_squares, for_loop_index, grade, last_index_of_zero, median, mirror_image, negative_to_zero, pig_latin, replace_space_with_newline, scrabble_score, small_or_large, smallest, string_differences, string_lengths_backwards, sum_of_squares, super_anagrams, syllables, vector_average, vectors_summed, wallis_pi, word_stats, x_word_lines]
 
+	IO = [{}, {}]
+	arithmetic = [{}, {}]
+	comparison = [{}, {}]
+	boolean = [{}, {}]
+	string_handling = [{}, {}]
+	vectors = [{}, {}]
+
 	#a list of lists; a master list containing lists of programs broken down by problem they solve
 	#just change this line for unsimplified 
 	organized_programs = simp_success_only()
 
 	#all_progs = organized_programs[0]
-	for prob in range (0, len(organized_programs)):
+	for prob in range (1, len(organized_programs)):
 
-		if prob == 0:
-			destwriter.writerow(["all_programs"])
-
-		if prob == 1:
-			destwriter.writerow(["number_io"])
+		if prob == 1: #*************************************************************
+			tags = [IO, arithmetic]
 
 		if prob == 2:
-			destwriter.writerow(["checksum"])
+			tags = [string_handling, arithmetic, IO]
 
 		if prob == 3:
-			destwriter.writerow(["collatz_numbers"])
+			tags = [arithmetic, comparison]
 
-		if prob == 4:
-			destwriter.writerow(["compare_string_lengths"])
+		if prob == 4: #*************************************************************
+			tags = [boolean, comparison, string_handling]
 
 		if prob == 5:
-			destwriter.writerow(["count_odds"])
+			tags = [vectors, arithmetic]
 
 		if prob == 6:
-			destwriter.writerow(["digits"])
+			tags = [IO, arithmetic, string_handling]
 
-		if prob == 7:
-			destwriter.writerow(["double_letters"])
+		if prob == 7: #*************************************************************
+			tags = [string_handling, IO, comparison]
 
 		if prob == 8:
-			destwriter.writerow(["even_squares"])
+			tags = [IO, arithmetic]
 
 		if prob == 9:
-			destwriter.writerow(["for_loop_index"])
+			tags = [IO, arithmetic]
 
 		if prob == 10:
-			destwriter.writerow(["grade"])
+			tags = [IO, comparison]
 
-		if prob == 11:
-			destwriter.writerow(["last_index_of_zero"])
+		if prob == 11: #*************************************************************
+			tags = [vectors, comparison]
 
-		if prob == 12:
-			destwriter.writerow(["median"])
+		if prob == 12: #*************************************************************
+			tags = [IO, comparison]
 
-		if prob == 13:
-			destwriter.writerow(["mirror_image"])
+		if prob == 13: #*************************************************************
+			tags = [vectors, boolean, comparison]
 
-		if prob == 14:
-			destwriter.writerow(["negative_to_zero"])
+		if prob == 14: #*************************************************************
+			tags = [vectors, comparison]
 
 		if prob == 15:
-			destwriter.writerow(["pig_latin"])
+			tags = [string_handling, IO]
 
-		if prob == 16:
-			destwriter.writerow(["replace_space_with_newline"])
+		if prob == 16: #*************************************************************
+			tags = [string_handling, IO, arithmetic]
 
-		if prob == 17:
-			destwriter.writerow(["scrabble_score"])
+		if prob == 17: #*************************************************************
+			tags = [string_handling, arithmetic]
 
 		if prob == 18:
-			destwriter.writerow(["small_or_large"])
+			tags = [IO, comparison]
 
 		if prob == 19:
-			destwriter.writerow(["smallest"])
+			tags = [IO, comparison]
 
 		if prob == 20:
-			destwriter.writerow(["string_differences"])
+			tags = [string_handling, comparison, IO]
 
 		if prob == 21:
-			destwriter.writerow(["string_lengths_backwards"])
+			tags = [IO, string_handling, vectors]
 
 		if prob == 22:
-			destwriter.writerow(["sum_of_squares"])
+			tags = [arithmetic]
 
 		if prob == 23:
-			destwriter.writerow(["super_anagrams"])
+			tags = [boolean, string_handling, comparison]
 
-		if prob == 24:
-			destwriter.writerow(["syllables"])
+		if prob == 24: #*************************************************************
+			tags = [IO, string_handling, arithmetic]
 
-		if prob == 25:
-			destwriter.writerow(["vector_average"])
+		if prob == 25: #*************************************************************
+			tags = [vectors, arithmetic]
 
 		if prob == 26:
-			destwriter.writerow(["vectors_summed"])
+			tags = [vectors, arithmetic]
 
 		if prob == 27:
-			destwriter.writerow(["wallis_pi"])
+			tags = [arithmetic]
 
 		if prob == 28:
-			destwriter.writerow(["word_stats"])
+			tags = [IO, string_handling, arithmetic]
 
-		if prob == 29:
-			destwriter.writerow(["x_word_lines"])
+		if prob == 29: #*************************************************************
+			tags = [string_handling, IO]
+
 
 		problem = organized_programs[prob]
 
@@ -219,6 +226,7 @@ def simplified_pairs():
 
 		freqs = {}
 		pairs = {}
+
 
 		for oprogram in problem:
 
@@ -251,34 +259,50 @@ def simplified_pairs():
 					if not check_if_constant(program[i+1]):
 						freqs = add_freqs(program[i+1], freqs)
 
-		all_pairs = []
-		all_freqs = []
-		total_freqs = []
-		total_dists = []
-		minmax_dists = []
-
 		for (f1, f2) in pairs:
-			significant = significance(f1, f2, freqs, pairs)
 
+			pair = (f1, f2)
+
+			if pair in dists:
+				avgdist = sum(dists[(f1, f2)]) / float(counts[(f1, f2)])
+			else:
+				avgdist = sum(dists[(f2, f1)]) / float(counts[(f2, f1)])
+
+			frequency = float(pairs[pair]) / len(problem)
+
+			for tag in tags: 
+
+				#each tag is TAG = [pairs, dists], where pairs and dists are dictionaries containing lists
+				if (f1, f2) in tag[0]:
+					tag[0][(f1, f2)].append(frequency)
+					tag[1][(f1, f2)].append(avgdist)
+
+				elif (f2, f1) in tag[0]:
+					tag[0][(f2, f1)].append(frequency)
+					tag[1][(f2, f1)].append(avgdist)
+
+				else:
+					tag[0][(f1, f2)] = [frequency]
+					tag[1][(f1, f2)] = [avgdist]
+
+
+			"""
+			significant = significance(f1, f2, freqs, pairs)
 			if significant:
 				print f1, f2
 
 				if (f1, f2) in dists:
 					avgdist = sum(dists[(f1, f2)]) / float(counts[(f1, f2)])
-					minimum = min(dists[(f1, f2)])
-					maximum = max(dists[(f1, f2)])
 				else:
 					avgdist = sum(dists[(f2, f1)]) / float(counts[(f2, f1)])
-					minimum = min(dists[(f2, f1)])
-					maximum = max(dists[(f2, f1)])
 				#print avgdist
 				print
 
+				
 				all_pairs.append((f1, f2))
 				all_freqs.append(pairs[(f1, f2)])
 				total_freqs.append((freqs[f1], freqs[f2]))
-				total_dists.append(avgdist)
-				minmax_dists.append((minimum, maximum))
+				total_dists.append(avgdist)"""
 
 			pairs[(f1, f2)] = 0
 
@@ -286,11 +310,177 @@ def simplified_pairs():
 			freqs[elem] = 0
 
 
-		destwriter.writerow(all_pairs)
+		"""destwriter.writerow(all_pairs)
 		destwriter.writerow(all_freqs)
 		destwriter.writerow(total_freqs)
-		destwriter.writerow(total_dists)
-		destwriter.writerow(minmax_dists)
+		destwriter.writerow(total_dists)"""
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["IO"])
+	for combo in IO[0]:
+		#IO[0][combo] = list of frequencies
+		avg_frequency = sum(IO[0][combo]) / 5
+
+		#IO[1][combo] = list of average distances
+		avg_distance = sum(IO[1][combo]) / len(IO[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			print combo
+			print IO[0][combo]
+			#print len(IO)
+			print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
+
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["arithmetic"])
+	for combo in arithmetic[0]:
+		#arithmetic[0][combo] = list of frequencies
+		avg_frequency = sum(arithmetic[0][combo]) / 5
+
+		#arithmetic[1][combo] = list of average distances
+		avg_distance = sum(arithmetic[1][combo]) / len(arithmetic[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			#print combo
+			#print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			#print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
+
+
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["comparison"])
+	for combo in comparison[0]:
+		#comparison[0][combo] = list of frequencies
+		avg_frequency = sum(comparison[0][combo]) / 6
+
+		#comparison[1][combo] = list of average distances
+		avg_distance = sum(comparison[1][combo]) / len(comparison[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			#print combo
+			#print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			#print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
+
+
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["boolean"])
+	for combo in boolean[0]:
+		#boolean[0][combo] = list of frequencies
+		avg_frequency = sum(boolean[0][combo]) / 2
+
+		#boolean[1][combo] = list of average distances
+		avg_distance = sum(boolean[1][combo]) / len(boolean[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			#print combo
+			#print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			#print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
+
+
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["string_handling"])
+	for combo in string_handling[0]:
+		#string_handling[0][combo] = list of frequencies
+		avg_frequency = sum(string_handling[0][combo]) / 6
+
+		#string_handling[1][combo] = list of average distances
+		avg_distance = sum(string_handling[1][combo]) / len(string_handling[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			#print combo
+			#print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			#print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
+
+
+
+	all_pairs = []
+	all_freqs = []
+	total_dists = []
+
+	destwriter.writerow(["vectors"])
+	for combo in vectors[0]:
+		#vectors[0][combo] = list of frequencies
+		avg_frequency = sum(vectors[0][combo]) / 4
+
+		#vectors[1][combo] = list of average distances
+		avg_distance = sum(vectors[1][combo]) / len(vectors[1][combo])
+		#print avg_distance
+
+		if avg_frequency >= .3:
+			all_pairs.append(combo)
+			#print combo
+			#print avg_frequency
+			all_freqs.append(avg_frequency)
+			total_dists.append(avg_distance)
+			#print avg_distance
+			#print
+
+	destwriter.writerow(all_pairs)
+	destwriter.writerow(all_freqs)
+	destwriter.writerow(total_dists)
 
 
 def main():
