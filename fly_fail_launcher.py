@@ -33,9 +33,9 @@ service_tag = "tom"
 output_directory = "/home/gwoolson/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
-"""if output_directory[-1] != "/":
+if output_directory[-1] != "/":
     output_directory += "/"
-if os.path.isdir(output_directory):
+"""if os.path.isdir(output_directory):
     raise RuntimeError("Output directory already exists")
 
 os.mkdir(output_directory)
