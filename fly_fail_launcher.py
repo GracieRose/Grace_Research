@@ -30,7 +30,7 @@ zip_end2 = ".csv.tar.gz"
 service_tag = "tom"
 
 ##########################################################################
-outputDirectory = "/home/gwoolson/csvdata"
+output_directory = "/home/gwoolson/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
 """if output_directory[-1] != "/":
@@ -54,8 +54,8 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %schecksum/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start1, run, zip_end1)
-    command = "python fly_failedall.py run%i.csv %schecksum/data%i.csv;" % (outputDirectory, run, run)
+    intro_command = "echo Starting run; cd %schecksum/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start1, run, zip_end1)
+    command = "python fly_failedall.py run%i.csv %schecksum/data%i.csv;" % (output_directory, run, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
@@ -66,8 +66,8 @@ for run in range(0, number_runs):
 """ % (title_string, run, full_command, service_tag)
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %scollatz-numbers/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start2, run, zip_end2)
-    command = "python fly_failedall.py run%i.csv %scollatz-numbers/data%i.csv;" % (outputDirectory, run, run)
+    intro_command = "echo Starting run; cd %scollatz-numbers/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start2, run, zip_end2)
+    command = "python fly_failedall.py run%i.csv %scollatz-numbers/data%i.csv;" % (output_directory, run, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
