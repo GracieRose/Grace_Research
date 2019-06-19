@@ -159,7 +159,7 @@ def collect():
         if not line.startswith("uuid"):
             #the first line always starts with uuid************************
             
-            #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
+            #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86,
             genes_line = line.split(",")[7:]
             genes_line = ",".join(genes_line)[1:].split()
             end = genes_line[-1]
