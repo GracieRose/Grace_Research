@@ -59,6 +59,18 @@ for run in range(0, number_runs):
     }
 """ % (title_string, run, full_command, service_tag)
 
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %scount-odds/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start1, run, zip_end1)
+    command = "python fly_failedall.py run%i.csv %scount-odds/data%i.csv;" % (outputDirectory, run, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+    }
+""" % (title_string, run, full_command, service_tag)
+
 alfcode += "}\n"
 
 alf_f.writelines(alfcode)
