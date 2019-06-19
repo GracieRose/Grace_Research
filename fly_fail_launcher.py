@@ -30,7 +30,7 @@ zip_end2 = ".csv.tar.gz"
 service_tag = "tom"
 
 ##########################################################################
-output_directory = "/home/gwoolson/csvdata"
+outputDirectory = "/home/gwoolson/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
 """if output_directory[-1] != "/":
