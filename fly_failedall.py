@@ -75,7 +75,7 @@ def debracket(lst):
 
 
 
-def stats(all_genomes, funcs):
+def stats(all_genomes):
 
     freqs = {}
     count = 0
@@ -95,6 +95,7 @@ def stats(all_genomes, funcs):
                 if word == ":instruction":
                     func = genome[i+1]
                     is_constant = check_if_constant(func)
+
                     if (not is_constant) and (not func in this_run):
                         this_run.append(func)
                         if func in freqs:
@@ -143,22 +144,6 @@ def collect():
     destfile = open(destination, mode="w")
     destwriter = csv.writer(destfile)
 
-    #I want to use the problem, not the tags
-    #category = directories[outputDirectory]
-
-    """if outputDirectory[-1] != '/':
-        outputDirectory += '/'"""
-    #dirList = os.listdir(outputDirectory)
-
-    """problem = ""
-    for topic in problems:
-        if topic in outputDirectory:
-                problem = topic
-
-
-    header = [problem]
-    destwriter.writerow(header)"""  #this is useless
-
     all_funcs = []
     all_genomes = []
 
@@ -166,8 +151,8 @@ def collect():
     #fileName = (outputFilePrefix + str(i) + outputFileSuffix)
     f = open(outputDirectory)
 
-    success = False
-    simpl = False
+    #success = False
+    #simpl = False
 
     for line in f:
 
@@ -175,8 +160,6 @@ def collect():
             #the first line always starts with uuid************************
             
             #removes  d1355282-86ad-4964-aa74-d040ff2385f3,0,0,[],:random,98,86, i think
-            #print "ITERATING"
-
             genes_line = line.split(",")[7:]
             genes_line = ",".join(genes_line)[1:].split()
             end = genes_line[-1]
@@ -194,15 +177,14 @@ def collect():
                 if genes_line[i] == ":instruction":
                     func = genes_line[i + 1]
                     #print func
-                    if not func in all_funcs:
-                        all_funcs.append(func)
+                    """if not func in all_funcs:
+                        all_funcs.append(func)"""
 
 
             all_genomes.append((genes_line, end))
 
-    print "Finished Reading File"
-
-    freqs = stats(all_genomes, all_funcs)
+    #freqs = stats(all_genomes, all_funcs)
+    freqs = stats(all_genomes)
 
     funcslist = []
     freqslist = []
