@@ -21,8 +21,11 @@ output_prefix = "run"
 output_postfix = ".csv"
 
 
-zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/count-odds/lexicase/csv/data"
+zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/checksum/lexicase/csv/data"
 zip_end1 = ".csv.tar.gz"
+
+zip_start2 = "tar -xvzf /home/thelmuth/Results/clustering-bench/collatz-numbers/baseline-uniform/csv/data"
+zip_end2 = ".csv.tar.gz"
 
 service_tag = "tom"
 
@@ -30,12 +33,15 @@ service_tag = "tom"
 output_directory = "/home/gwoolson/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
-if output_directory[-1] != "/":
+"""if output_directory[-1] != "/":
     output_directory += "/"
 if os.path.isdir(output_directory):
     raise RuntimeError("Output directory already exists")
 
 os.mkdir(output_directory)
+os.mkdir(output_directory + "checksum/")
+os.mkdir(output_directory + "collatz-numbers/")"""
+
 
 # Make alf file
 #alf_file_string = output_directory + "clojush_runs.alf"
@@ -48,8 +54,8 @@ Job -title {%s} -subtasks {
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %scount-odds/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start1, run, zip_end1)
-    command = "python fly_failedall.py run%i.csv %scount-odds/data%i.csv;" % (outputDirectory, run, run)
+    intro_command = "echo Starting run; cd %schecksum/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start1, run, zip_end1)
+    command = "python fly_failedall.py run%i.csv %schecksum/data%i.csv;" % (outputDirectory, run, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
@@ -60,8 +66,8 @@ for run in range(0, number_runs):
 """ % (title_string, run, full_command, service_tag)
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %scount-odds/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start1, run, zip_end1)
-    command = "python fly_failedall.py run%i.csv %scount-odds/data%i.csv;" % (outputDirectory, run, run)
+    intro_command = "echo Starting run; cd %scollatz-numbers/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (outputDirectory, zip_start2, run, zip_end2)
+    command = "python fly_failedall.py run%i.csv %scollatz-numbers/data%i.csv;" % (outputDirectory, run, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
