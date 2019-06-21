@@ -24,7 +24,7 @@ output_postfix = ".csv"
 zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/checksum/lexicase/csv/data"
 zip_end1 = ".csv.tar.gz"
 
-zip_start2 = "tar -xvzf /home/thelmuth/Results/clustering-bench/compare_string_lengths/baseline-uniform/csv/data"
+zip_start2 = "tar -xvzf /home/thelmuth/Results/clustering-bench/compare-string-lengths/baseline-uniform/csv/data"
 zip_end2 = ".csv.tar.gz"
 
 service_tag = "tom"
@@ -42,8 +42,80 @@ os.mkdir(output_directory)
 os.mkdir(output_directory + "checksum/")
 os.mkdir(output_directory + "collatz-numbers/")"""
 
-os.mkdir(output_directory + "compare_string_lengths/")
-os.mkdir(output_directory + "compare_string_lengths/donetest")
+os.mkdir(output_directory + "digits/")
+os.mkdir(output_directory + "digits/donetest")
+
+os.mkdir(output_directory + "double-letters/")
+os.mkdir(output_directory + "double-letters/donetest")
+
+os.mkdir(output_directory + "even-squares/")
+os.mkdir(output_directory + "even-squares/donetest")
+
+os.mkdir(output_directory + "for-loop-index/")
+os.mkdir(output_directory + "for-loop-index/donetest")
+
+os.mkdir(output_directory + "grade/")
+os.mkdir(output_directory + "grade/donetest")
+
+os.mkdir(output_directory + "last-index-of-zero/")
+os.mkdir(output_directory + "last-index-of-zero/donetest")
+
+os.mkdir(output_directory + "median/")
+os.mkdir(output_directory + "median/donetest")
+
+os.mkdir(output_directory + "mirror-image/")
+os.mkdir(output_directory + "mirror-image/donetest")
+
+os.mkdir(output_directory + "negative-to-zero/")
+os.mkdir(output_directory + "negative-to-zero/donetest")
+
+os.mkdir(output_directory + "number-io/")
+os.mkdir(output_directory + "number-io/donetest")
+
+os.mkdir(output_directory + "pig-latin/")
+os.mkdir(output_directory + "pig-latin/donetest")
+
+os.mkdir(output_directory + "replace-space-with-newline/")
+os.mkdir(output_directory + "replace-space-with-newline/donetest")
+
+os.mkdir(output_directory + "scrabble-score/")
+os.mkdir(output_directory + "scrabble-score/donetest")
+
+os.mkdir(output_directory + "smallest/")
+os.mkdir(output_directory + "smallest/donetest")
+
+os.mkdir(output_directory + "small-or-large/")
+os.mkdir(output_directory + "small-or-large/donetest")
+
+os.mkdir(output_directory + "string-differences/")
+os.mkdir(output_directory + "string-differences/donetest")
+
+os.mkdir(output_directory + "string-lengths-backwards/")
+os.mkdir(output_directory + "string-lengths-backwards/donetest")
+
+os.mkdir(output_directory + "sum-of-squares/")
+os.mkdir(output_directory + "sum-of-squares/donetest")
+
+os.mkdir(output_directory + "super-anagrams/")
+os.mkdir(output_directory + "super-anagrams/donetest")
+
+os.mkdir(output_directory + "syllables/")
+os.mkdir(output_directory + "syllables/donetest")
+
+os.mkdir(output_directory + "vector-average/")
+os.mkdir(output_directory + "vector-average/donetest")
+
+os.mkdir(output_directory + "vectors-summed/")
+os.mkdir(output_directory + "vectors-summed/donetest")
+
+os.mkdir(output_directory + "wallis-pi/")
+os.mkdir(output_directory + "wallis-pi/donetest")
+
+os.mkdir(output_directory + "word-stats/")
+os.mkdir(output_directory + "word-stats/donetest")
+
+os.mkdir(output_directory + "x-word-lines/")
+os.mkdir(output_directory + "x-word-lines/donetest")
 
 
 # Make alf file
