@@ -40,7 +40,7 @@ if output_directory[-1] != "/":
 
 os.mkdir(output_directory)
 os.mkdir(output_directory + "checksum/")
-os.mkdir(output_directory + "collatz-numbers/")"""
+os.mkdir(output_directory + "collatz-numbers/")
 
 os.mkdir(output_directory + "digits/")
 os.mkdir(output_directory + "digits/donetest")
@@ -115,7 +115,7 @@ os.mkdir(output_directory + "word-stats/")
 os.mkdir(output_directory + "word-stats/donetest")
 
 os.mkdir(output_directory + "x-word-lines/")
-os.mkdir(output_directory + "x-word-lines/donetest")
+os.mkdir(output_directory + "x-word-lines/donetest")"""
 
 
 # Make alf file
