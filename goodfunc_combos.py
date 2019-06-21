@@ -46,25 +46,26 @@ def simplify(program):
 
 
 def significance(f1, f2, freqs, pairs):
+	
 	significant = False
 
-	if abs(freqs[f1] - freqs[f2]) < 30:
+	#if abs(freqs[f1] - freqs[f2]) < 30:
 
-		if freqs[f1] <= freqs[f2]:
-			if pairs[(f1, f2)] >= (.8 * freqs[f1]):
-				significant = True
+	if freqs[f1] <= freqs[f2]:
+		if pairs[(f1, f2)] >= (1 * freqs[f1]):
+			significant = True
 
-		else:
-			if pairs[(f1, f2)] >= (.8 * freqs[f2]):
-				significant = True
+	else:
+		if pairs[(f1, f2)] >= (1 * freqs[f2]):
+			significant = True
 
-		if f1 == "in1" or f2 == "in1":
-			significant = False
+	if f1 == "in1" or f2 == "in1":
+		significant = False
 
-		if f1 == "in2" or f2 == "in2":
-			significant = False
+	if f1 == "in2" or f2 == "in2":
+		significant = False
 
-		return significant
+	return significant
 
 
 
@@ -129,6 +130,12 @@ def simplified_pairs():
 
 	for oprogram in all_progs:
 
+		if "float_flush" in oprogram:
+			if "float_add" in oprogram:
+				print oprogram
+				print
+
+
 		program = simplify(oprogram)
 
 		for i in range(0, len(program) - 1):
@@ -172,13 +179,19 @@ def simplified_pairs():
 
 			if (f1, f2) in dists:
 				avgdist = sum(dists[(f1, f2)]) / float(counts[(f1, f2)])
+				distlst = dists[(f1, f2)]
+				#distlst.sort()
+				print distlst
 				minimum = min(dists[(f1, f2)])
 				maximum = max(dists[(f1, f2)])
 			else:
 				avgdist = sum(dists[(f2, f1)]) / float(counts[(f2, f1)])
+				distlst = dists[(f2, f1)]
+				#distlst.sort()
+				print distlst
 				minimum = min(dists[(f2, f1)])
 				maximum = max(dists[(f2, f1)])
-			#print avgdist
+			print avgdist
 			print
 
 			all_pairs.append((f1, f2))

@@ -51,7 +51,7 @@ def simp_success_only():
     final = [all_programs, number_io, checksum, collatz_numbers, compare_string_lengths, count_odds, digits, double_letters, even_squares, for_loop_index, grade, last_index_of_zero, median, mirror_image, negative_to_zero, pig_latin, replace_space_with_newline, scrabble_score, small_or_large, smallest, string_differences, string_lengths_backwards, sum_of_squares, super_anagrams, syllables, vector_average, vectors_summed, wallis_pi, word_stats, x_word_lines]
     prob = ""
 
-    for inputfile in inputfiles:    
+    for inputfile in inputfiles:
         f = open(inputfile)
 
         tags = []
@@ -65,7 +65,7 @@ def simp_success_only():
 
             if line.startswith("Simplified:"):
 
-                #print line
+                print line
 
                 program = line[:-1].split(",")[1:]
                 all_programs.append(program)

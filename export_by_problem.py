@@ -127,7 +127,7 @@ directories = ["/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
 """
 
 
-directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths" : ["boolean", "comparison", "string_handling"],
+"""directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/compare-string-lengths" : ["boolean", "comparison", "string_handling"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/double-letters" : ["I/O", "string_handling", "comparison"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/last-index-of-zero" : ["comparison", "vectors"],
                 "/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops-UMAD/mirror-image" : ["vectors", "boolean", "comparison"],
@@ -168,7 +168,7 @@ directories = {"/home/gwoolson/research/thelmuth/Results/novelty-lexicase/genops
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/scrabble-score" : ["string_handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/syllables" : ["I/O", "string_handling", "arithmetic"],
                 "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/novelty-search/x-word-lines" : ["I/O", "string_handling"],
-                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io" : ["I/O", "arithmetic"]}
+                "/home/gwoolson/research/thelmuth/Results/parent-selection-v2/tournament/number-io" : ["I/O", "arithmetic"]}"""
 
 
 problems = ["number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
@@ -180,7 +180,7 @@ outputFileSuffix = ".txt"
 
 #directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
 #directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
-#directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string_handling", "arithmetic"]}
+directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string_handling", "arithmetic"]}
 
 
 verbose = False

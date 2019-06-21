@@ -114,31 +114,45 @@ def stats(all_genomes):
 
     return freqs
 
+def find_path(directory):
+    #ex: takes /home/gwoolson/csvdata/collatz-numbers/data2.csv -> /home/gwoolson/csvdata/collatz-numbers/
 
+    if directory[-10] == "/":
+        path = directory[:-9]
+    else:
+        path = directory[:-10]
 
+    print path
+    return path
 
 
 def collect():
 
     #problems = ["number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
 
-    outputFilePrefix = "data"
-    outputFileSuffix = ".csv"
+    #outputFilePrefix = "data"
+    #outputFileSuffix = ".csv"
 
 
     verbose = False
     if len(sys.argv) > 2:
         #outputDirectory = "C:/Users/livel/Desktop/Research"
         outputDirectory = sys.argv[2]
+        isdonepath = find_path(outputDirectory)
     else:
         print "Please provide a file to open"
         exit(1)
 
     if len(sys.argv) > 1:
         destination = sys.argv[1]
+
+        donenum = destination[3:]
+        donenum = int(donenum[:-4])
     else:
         print("please provide a destination file in the format <filename>.csv")
         exit(1)
+
+    isdonefile = isdonepath + "donetest/done%i.txt" % donenum 
 
 
     destfile = open(destination, mode="w")
@@ -198,6 +212,7 @@ def collect():
     destwriter.writerow(funcslist)
     destwriter.writerow(freqslist)
 
+    is_finished = open(isdonefile, mode="w")
 
 def main():
     collect()
