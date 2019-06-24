@@ -64,13 +64,143 @@ if output_directory[-1] != "/":
 alf_file_string = output_directory + "clojush_scraping.alf"
 alf_f = open(alf_file_string, "w")
 
-alfcode = """##AlfredToDo 3.0
-Job -title {%s} -subtasks {
-""" % (title_string)
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssmallest/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start12, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %ssmallest/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %sscrabble-score/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start11, run, zip_end)
-    command = "python fly_failedall.py run%i.csv %sscrabble-score/data%i.csv;" % (run, output_directory, run)
+    intro_command = "echo Starting run; cd %ssmall-or-large/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start13, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %ssmall-or-large/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sstring-differences/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start14, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %sstring-differences/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sstring-lengths-backwards/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start15, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %sstring-lengths-backwards/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssum-of-squares/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start16, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %ssum-of-squares/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssuper-anagrams/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start17, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %ssuper-anagrams/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssyllables/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start18, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %ssyllables/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start19, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %svector-average/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %svectors-summed/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start20, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %svectors-summed/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %swallis-pi/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start21, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %swallis-pi/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sword-stats/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start22, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %sword-stats/data%i.csv;" % (run, output_directory, run)
+    outro_command = "rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sx-word-lines/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start23, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %sx-word-lines/data%i.csv;" % (run, output_directory, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command

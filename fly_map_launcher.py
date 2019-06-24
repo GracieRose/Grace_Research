@@ -179,7 +179,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -192,7 +192,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -204,7 +204,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -216,7 +216,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -229,7 +229,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -241,7 +241,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -254,7 +254,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -266,7 +266,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -278,7 +278,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -290,7 +290,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -303,7 +303,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -315,7 +315,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -327,7 +327,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -339,7 +339,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -351,7 +351,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -363,7 +363,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -375,7 +375,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -387,7 +387,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -399,7 +399,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -411,7 +411,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -423,7 +423,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -436,7 +436,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -449,7 +449,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
@@ -464,7 +464,7 @@ for run in range(0, number_runs):
     full_command = intro_command + command + outro_command
 
     alfcode += """    Task -title {%s - run %i} -cmds {
-        RemoteCmd {/bin/sh -c {%s}} -service {%s}
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
 
