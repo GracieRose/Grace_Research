@@ -69,8 +69,8 @@ Job -title {%s} -subtasks {
 """ % (title_string)
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %sfor-loop-index/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start2, run, zip_end)
-    command = "python fly_failedall.py run%i.csv %sfor-loop-index/data%i.csv;" % (run, output_directory, run)
+    intro_command = "echo Starting run; cd %sreplace-space-with-newline/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start10, run, zip_end)
+    command = "python fly_failedall.py run%i.csv %sreplace-space-with-newline/data%i.csv;" % (run, output_directory, run)
     outro_command = "rm data%i.csv; echo Finished Run" % (run)
 
     full_command = intro_command + command + outro_command
