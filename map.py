@@ -108,11 +108,14 @@ destwriter = csv.writer(destfile)
 f = open(outputFile)
 
 gen = 0
+gencount = 0
 freqs = {}
 destwriter.writerow(["Gen 0"])
 
 for line in f:
     if not line.startswith("uuid"):
+
+        gencount += 1
         
         line = line.split(",")
         this_gen = int(line[1])
@@ -123,7 +126,8 @@ for line in f:
             freqslist = []
             for key in freqs:
                 funcslist.append(key)
-                freqslist.append(freqs[key])
+                #turns the frequency into a percentage
+                freqslist.append(freqs[key]/float(gencount))
 
                 freqs[key] = 0
 
@@ -139,8 +143,6 @@ for line in f:
         line = debracket(deparenthasize(line[1:-1].split()))
         
         freqs = find_funcs_and_simplify(line, freqs)
-
-        #destwriter.writerow(funcs)
 
 funcslist = []
 freqslist = []

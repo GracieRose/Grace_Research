@@ -47,7 +47,7 @@ def simplify(program):
 
 def significance(f1, f2, freqs, pairs):
 	
-	#significant = False
+	significant = False
 
 	#if abs(freqs[f1] - freqs[f2]) < 30:
 
@@ -76,8 +76,6 @@ def calculate_distances(all_progs):
 	counts = {}
 
 	for program in all_progs:
-
-		print program
 
 		for i in range(0, len(program) - 1):
 
@@ -131,6 +129,12 @@ def simplified_pairs():
 	(dists, counts) = calculate_distances(all_progs)
 
 	for oprogram in all_progs:
+
+		if "float_flush" in oprogram:
+			if "float_add" in oprogram:
+				print oprogram
+				print
+
 
 		program = simplify(oprogram)
 

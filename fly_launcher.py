@@ -113,7 +113,7 @@ os.mkdir(output_directory + "word-stats/donetest")
 
 os.mkdir(output_directory + "x-word-lines/")
 os.mkdir(output_directory + "x-word-lines/donetest")"""
-"""
+
 
 os.mkdir(output_directory)
 
