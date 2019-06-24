@@ -51,7 +51,7 @@ zip_start23 = "tar -xvzf /home/thelmuth/Results/clustering-bench/x-word-lines/ba
 service_tag = "tom"
 
 ##########################################################################
-output_directory = "/home/gwoolson/csvdata"
+output_directory = "/home/gwoolson/Grace_Research/csvdata"
 
 # Check to make sure directory doesn't exist; if not, create it
 if output_directory[-1] != "/":
