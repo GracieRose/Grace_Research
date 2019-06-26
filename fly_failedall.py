@@ -163,7 +163,7 @@ def collect():
 
 
     #fileName = (outputFilePrefix + str(i) + outputFileSuffix)
-    f = open(outputDirectory)
+    f = open("/state/partition1/data%i.csv" % donenum)
 
     #success = False
     #simpl = False
