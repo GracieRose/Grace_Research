@@ -23,6 +23,34 @@ def check_if_constant(instruction):
 	return is_constant
 
 
+def fix_strings(program):
+	
+	print program
+
+	newprog = []
+	stringy = False
+
+	for item in program:
+		if stringy:
+			if item.endswith('"""'):
+				stringy = False
+			newprog[-1] = newprog[-1] + item
+
+		elif item.startswith('"""'):
+			stringy = True
+			newprog.append(item)
+
+		else:
+			newprog.append(item)
+
+	print
+	print newprog
+
+	return newprog
+
+
+
+
 def get_funcs_list(organized_programs):
 	"""Returns a list of all functions that may be of significance for one or more tags"""
 	problems = ["all_programs", "number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
@@ -148,9 +176,9 @@ def get_funcs_list(organized_programs):
 
 			#the program has this seperated structure in case we want to use the max_threshold
 			for key in freqs:
-				#if (freqs[key] >= max_threshold):
-				if not key in all_funcs:
-					all_funcs.append(key)
+				if (freqs[key] >= max_threshold):
+					if not key in all_funcs:
+						all_funcs.append(key)
 
 	return all_funcs
 
@@ -174,6 +202,15 @@ def goodfuncs1():
 	string_handling = []
 	vectors = []
 	all_programs = []
+
+	#l stands for location
+	IOl = []
+	arithmeticl = []
+	comparisonl = []
+	booleanl = []
+	string_handlingl = []
+	vectorsl = []
+	all_programsl = []
 
 	#keeps track of how many problems are in each category so that the averages can be calculated
 	iocount = 0
@@ -205,8 +242,6 @@ def goodfuncs1():
 
 	#gets the data for each of the above functions for each problem
 	for prob in problems:
-
-		#print prob
 
 		if prob == "all_programs":
 			programs = organized_programs[0]
@@ -321,7 +356,7 @@ def goodfuncs1():
 					this_run.append(func)
 					if func in freqs:
 						freqs[func] += 1
-						locations[func] + [float(x) / prog_len]
+						locations[func].append(float(x) / prog_len)
 					else:
 						freqs[func] = 1
 						#x = location of function in program
@@ -344,6 +379,11 @@ def goodfuncs1():
 				# otherwise, it is the number of times the function occurs over the total number of programs
 				if function in freqs:
 					frequency = (freqs[function] / float(max_frequency))
+					#print freqs[function]
+					#print locations[function]
+					loc = sum(locations[function]) / len(locations[function])
+					#print func_loc 
+					#print
 				else:
 					frequency = 0.0
 
@@ -355,8 +395,10 @@ def goodfuncs1():
 				if prob in tags["I/O"]:
 					if len(IO) - 1 < i:
 						IO.append(frequency)
+						IOl.append(loc)
 					else:
 						IO[i] = IO[i] + frequency
+						IOl[i] = IOl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						iocount += 1
@@ -364,8 +406,10 @@ def goodfuncs1():
 				if prob in tags["arithmetic"]:
 					if len(arithmetic) - 1 < i:
 						arithmetic.append(frequency)
+						arithmeticl.append(loc)						
 					else:
 						arithmetic[i] = arithmetic[i] + frequency
+						arithmeticl[i] = arithmeticl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						arithcount += 1
@@ -373,8 +417,10 @@ def goodfuncs1():
 				if prob in tags["comparison"]:
 					if len(comparison) - 1 < i:
 						comparison.append(frequency)
+						comparisonl.append(loc)
 					else:
 						comparison[i] = comparison[i] + frequency
+						comparisonl[i] = comparisonl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						compcount += 1
@@ -382,8 +428,10 @@ def goodfuncs1():
 				if prob in tags["boolean"]:
 					if len(boolean) - 1 < i:
 						boolean.append(frequency)
+						booleanl.append(loc)
 					else:
 						boolean[i] = boolean[i] + frequency
+						booleanl[i] = booleanl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						boolcount += 1
@@ -391,8 +439,10 @@ def goodfuncs1():
 				if prob in tags["string_handling"]:
 					if len(string_handling) - 1 < i:
 						string_handling.append(frequency)
+						string_handlingl.append(loc)
 					else:
 						string_handling[i] = string_handling[i] + frequency
+						string_handlingl[i] = string_handlingl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						strcount += 1
@@ -400,8 +450,10 @@ def goodfuncs1():
 				if prob in tags["vectors"]:
 					if len(vectors) - 1 < i:
 						vectors.append(frequency)
+						vectorsl.append(loc)
 					else:
 						vectors[i] = vectors[i] + frequency
+						vectorsl[i] = vectorsl[i] + loc
 
 					if i == len(all_funcs) - 1:
 						vectorcount += 1
@@ -411,34 +463,46 @@ def goodfuncs1():
 	for a in range(0, len(all_funcs)):
 		element = IO[a]
 		IO[a] = element / iocount
+		IOl[a] = IOl[a] / iocount
 
 		element = arithmetic[a]
 		arithmetic[a] = element / arithcount
+		arithmeticl[a] = arithmeticl[a] / arithcount
 
 		element = comparison[a]
 		comparison[a] = element / compcount
+		comparisonl[a] = comparisonl[a] / compcount
 
 		element = boolean[a]
 		boolean[a] = element / boolcount
+		booleanl[a] = booleanl[a] / boolcount
 
 		element = string_handling[a]
 		string_handling[a] = element / strcount
+		string_handlingl[a] = string_handlingl[a] / strcount
 
 		element = vectors[a]
 		vectors[a] = element / vectorcount
+		vectorsl[a] = vectorsl[a] / vectorcount
 
 	destwriter.writerow(["Tag"] + all_funcs)
 	destwriter.writerow(["IO"] + IO)
+	destwriter.writerow(["Locations"] + IOl)
 	destwriter.writerow(["Arithmetic"] + arithmetic)
+	destwriter.writerow(["Locations"] + arithmeticl)
 	destwriter.writerow(["Comparison"] + comparison)
+	destwriter.writerow(["Locations"] + comparisonl)
 	destwriter.writerow(["Boolean"] + boolean)
+	destwriter.writerow(["Locations"] + booleanl)
 	destwriter.writerow(["String Handling"] + string_handling)
+	destwriter.writerow(["Locations"] + string_handlingl)
 	destwriter.writerow(["Vectors"] + vectors)
+	destwriter.writerow(["Locations"] + vectorsl)
 	destwriter.writerow(["All Programs"] + all_programs)
 
 
 
-def goodfuncs2():
+def goodfuncs2(): #DOES NOT CALCULATE LOCATION
 	"""Calculates the frequency of each function that is returned by get_funcs_list for each tag, then
 	writes that data to a CSV, separated by tag.
 	Frequency is calculated as number of programs that contain that function, not number of occurances of that function"""
@@ -851,7 +915,9 @@ def goodfuncs2():
 
 def main():
 
-	goodfuncs1()
+	#goodfuncs1()
+	fix_strings(['""""', 'v', 'rh:P/', '"Ao6\'\\\\f"""', 'string_first', 'in1', '\\newline', 'string_replacechar', 'print_string', 'in1', 'string_split', 'string_concat', 'string_concat', 'string_concat', 'exec_eq', 'boolean_not', 'string_dup', 'string_concat', 'string_concat', 'string_concat', 'string_stackdepth', 'string_concat', 'string_dup', 'string_nth', 'string_concat', 'string_concat', 'string_length'])
+	#print(['""""', 'v', 'rh:P/', '"Ao6\'\\\\f"""', 'string_first', 'in1', '\\newline', 'string_replacechar', 'print_string', 'in1', 'string_split', 'string_concat', 'string_concat', 'string_concat', 'exec_eq', 'boolean_not', 'string_dup', 'string_concat', 'string_concat', 'string_concat', 'string_stackdepth', 'string_concat', 'string_dup', 'string_nth', 'string_concat', 'string_concat', 'string_length'])
 
 if __name__ == '__main__':
 	main()

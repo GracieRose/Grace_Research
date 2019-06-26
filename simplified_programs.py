@@ -65,7 +65,7 @@ def simp_success_only():
 
             if line.startswith("Simplified:"):
 
-                print line
+                #print line
 
                 program = line[:-1].split(",")[1:]
                 all_programs.append(program)
