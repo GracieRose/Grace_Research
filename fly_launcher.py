@@ -21,7 +21,35 @@ output_prefix = "run"
 output_postfix = ".csv"
 
 
-zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/count-odds/lexicase/csv/data"
+zip_start1 = "tar -xvzf /home/thelmuth/Results/clustering-bench/even-squares/baseline-uniform/csv/data"
+zip_start2 = "tar -xvzf /home/thelmuth/Results/clustering-bench/for-loop-index/baseline-uniform/csv/data"
+zip_start3 = "tar -xvzf /home/thelmuth/Results/clustering-bench/grade/baseline-uniform/csv/data"
+zip_start4 = "tar -xvzf /home/thelmuth/Results/clustering-bench/last-index-of-zero/baseline-uniform/csv/data"
+zip_start5 = "tar -xvzf /home/thelmuth/Results/clustering-bench/median/baseline-uniform/csv/data"
+zip_start6 = "tar -xvzf /home/thelmuth/Results/clustering-bench/mirror-image/baseline-uniform/csv/data"
+zip_start7 = "tar -xvzf /home/thelmuth/Results/clustering-bench/negative-to-zero/lexicase/csv/data"
+zip_start8 = "tar -xvzf /home/thelmuth/Results/clustering-bench/number-io/baseline-uniform/csv/data"
+zip_start9 = "tar -xvzf /home/thelmuth/Results/clustering-bench/pig-latin/baseline-uniform/csv/data"
+zip_start10 = "tar -xvzf /home/thelmuth/Results/clustering-bench/replace-space-with-newline/lexicase/csv/data"
+zip_start11 = "tar -xvzf /home/thelmuth/Results/clustering-bench/scrabble-score/lexicase/csv/data"
+zip_start12 = "tar -xvzf /home/thelmuth/Results/clustering-bench/smallest/baseline-uniform/csv/data"
+zip_start13 = "tar -xvzf /home/thelmuth/Results/clustering-bench/small-or-large/baseline-uniform/csv/data"
+zip_start14 = "tar -xvzf /home/thelmuth/Results/clustering-bench/string-differences/baseline-uniform/csv/data"
+zip_start15 = "tar -xvzf /home/thelmuth/Results/clustering-bench/string-lengths-backwards/lexicase/csv/data"
+zip_start16 = "tar -xvzf /home/thelmuth/Results/clustering-bench/sum-of-squares/baseline-uniform/csv/data"
+zip_start17 = "tar -xvzf /home/thelmuth/Results/clustering-bench/super-anagrams/baseline-uniform/csv/data"
+zip_start18 = "tar -xvzf /home/thelmuth/Results/clustering-bench/syllables/lexicase/csv/data"
+zip_start19 = "tar -xvzf /home/thelmuth/Results/clustering-bench/vector-average/lexicase/csv/data"
+zip_start20 = "tar -xvzf /home/thelmuth/Results/clustering-bench/vectors-summed/baseline-uniform/csv/data"
+zip_start21 = "tar -xvzf /home/thelmuth/Results/clustering-bench/wallis-pi/baseline-uniform/csv/data"
+zip_start22 = "tar -xvzf /home/thelmuth/Results/clustering-bench/word-stats/baseline-uniform/csv/data"
+zip_start23 = "tar -xvzf /home/thelmuth/Results/clustering-bench/x-word-lines/baseline-uniform/csv/data"
+zip_start24 = "tar -xvzf /home/thelmuth/Results/clustering-bench/checksum/lexicase/csv/data"
+zip_start25 = "tar -xvzf /home/thelmuth/Results/clustering-bench/collatz-numbers/baseline-uniform/csv/data"
+zip_start26 = "tar -xvzf /home/thelmuth/Results/clustering-bench/compare-string-lengths/baseline-uniform/csv/data"
+zip_start27 = "tar -xvzf /home/thelmuth/Results/clustering-bench/count-odds/lexicase/csv/data"
+zip_start28 = "tar -xvzf /home/thelmuth/Results/clustering-bench/digits/baseline-uniform/csv/data"
+zip_start29 = "tar -xvzf /home/thelmuth/Results/clustering-bench/double-letters/lexicase/csv/data"
 zip_end1 = ".csv.tar.gz"
 
 service_tag = "tom"
@@ -37,7 +65,10 @@ if os.path.isdir(output_directory):
 
 """os.mkdir(output_directory)
 os.mkdir(output_directory + "checksum/")
+os.mkdir(output_directory + "checksum/donetest")
+
 os.mkdir(output_directory + "collatz-numbers/")
+os.mkdir(output_directory + "collatz-numbers/donetest")
 
 os.mkdir(output_directory + "digits/")
 os.mkdir(output_directory + "digits/donetest")

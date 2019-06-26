@@ -89,66 +89,95 @@ def find_funcs_and_simplify(genome, freqs):
 
 
 
-if len(sys.argv) > 1:
-    outputFile = sys.argv[1]
-else:
-    print "Please provide a file to read"
-    exit(1)
+def find_path(directory):
+    #ex: takes /home/gwoolson/csvdata/collatz-numbers/data2.csv -> /home/gwoolson/csvdata/collatz-numbers/
 
-if len(sys.argv) > 2:
-    destination = sys.argv[2]
-else:
-    print("please provide a destination file in the format <filename>.csv")
-    exit(1)
+    if directory[-10] == "/":
+        path = directory[:-9]
+    else:
+        path = directory[:-10]
+
+    return path
 
 
-destfile = open(destination, mode="w")
-destwriter = csv.writer(destfile)
 
-f = open(outputFile)
+def map():
+    if len(sys.argv) > 1:
+        outputFile = sys.argv[1]
+        isdonepath = find_path(outputFile)
 
-gen = 0
-gencount = 0
-freqs = {}
-destwriter.writerow(["Gen 0"])
+    else:
+        print "Please provide a file to read"
+        exit(1)
 
-for line in f:
-    if not line.startswith("uuid"):
+    if len(sys.argv) > 2:
+        destination = sys.argv[2]
 
-        gencount += 1
-        
-        line = line.split(",")
-        this_gen = int(line[1])
+        donenum = destination[7:]
+        donenum = int(donenum[:-4])
 
-        if this_gen != gen:
+    else:
+        print("please provide a destination file in the format <filename>.csv")
+        exit(1)
 
-            funcslist = []
-            freqslist = []
-            for key in freqs:
-                funcslist.append(key)
-                #turns the frequency into a percentage
-                freqslist.append(freqs[key]/float(gencount))
+    isdonefile = isdonepath + "donetest/done%i.csv" % donenum
+    print isdonefile
 
-                freqs[key] = 0
+    destfile = open(destination, mode="w")
+    destwriter = csv.writer(destfile)
 
-            destwriter.writerow(funcslist)
-            destwriter.writerow(freqslist)
+    f = open(outputFile)
 
-            destwriter.writerow(["Gen %i" % this_gen])
-            gen = this_gen
+    gen = 0
+    gencount = 0
+    freqs = {}
+    destwriter.writerow(["Gen 0"])
+
+    for line in f:
+        if not line.startswith("uuid"):
+
+            gencount += 1
+            
+            line = line.split(",")
+            this_gen = int(line[1])
+
+            if this_gen != gen:
+
+                funcslist = []
+                freqslist = []
+                for key in freqs:
+                    funcslist.append(key)
+                    #turns the frequency into a percentage
+                    freqslist.append(freqs[key]/float(gencount))
+
+                    freqs[key] = 0
+
+                destwriter.writerow(funcslist)
+                destwriter.writerow(freqslist)
+
+                destwriter.writerow(["Gen %i" % this_gen])
+                gen = this_gen
 
 
-        line = ",".join(line[7:-201])
+            line = ",".join(line[7:-201])
 
-        line = debracket(deparenthasize(line[1:-1].split()))
-        
-        freqs = find_funcs_and_simplify(line, freqs)
+            line = debracket(deparenthasize(line[1:-1].split()))
+            
+            freqs = find_funcs_and_simplify(line, freqs)
 
-funcslist = []
-freqslist = []
-for key in freqs:
-    funcslist.append(key)
-    freqslist.append(freqs[key])
+    funcslist = []
+    freqslist = []
+    for key in freqs:
+        funcslist.append(key)
+        freqslist.append(freqs[key])
 
-destwriter.writerow(funcslist)
-destwriter.writerow(freqslist)
+    destwriter.writerow(funcslist)
+    destwriter.writerow(freqslist)
+
+    is_finished = open(isdonefile, mode="w")
+
+def main():
+    map()
+
+if __name__ == '__main__':
+    main()

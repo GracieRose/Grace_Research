@@ -84,81 +84,107 @@ copyfile(runfile, output_directory + "compare-string-lengths/map.py")
 
 os.mkdir(output_directory + "count-odds")
 os.mkdir(output_directory + "count-odds/donetest")
+copyfile(runfile, output_directory + "count-odds/map.py")
 
 os.mkdir(output_directory + "digits/")
 os.mkdir(output_directory + "digits/donetest")
+copyfile(runfile, output_directory + "digits/map.py")
 
 os.mkdir(output_directory + "double-letters/")
 os.mkdir(output_directory + "double-letters/donetest")
+copyfile(runfile, output_directory + "double-letters/map.py")
 
 os.mkdir(output_directory + "even-squares/")
 os.mkdir(output_directory + "even-squares/donetest")
+copyfile(runfile, output_directory + "even-squares/map.py")
 
 os.mkdir(output_directory + "for-loop-index/")
 os.mkdir(output_directory + "for-loop-index/donetest")
+copyfile(runfile, output_directory + "for-loop-index/map.py")
 
 os.mkdir(output_directory + "grade/")
 os.mkdir(output_directory + "grade/donetest")
+copyfile(runfile, output_directory + "grade/map.py")
 
 os.mkdir(output_directory + "last-index-of-zero/")
 os.mkdir(output_directory + "last-index-of-zero/donetest")
+copyfile(runfile, output_directory + "last-index-of-zero/map.py")
 
 os.mkdir(output_directory + "median/")
 os.mkdir(output_directory + "median/donetest")
+copyfile(runfile, output_directory + "median/map.py")
 
 os.mkdir(output_directory + "mirror-image/")
 os.mkdir(output_directory + "mirror-image/donetest")
+copyfile(runfile, output_directory + "mirror-image/map.py")
 
 os.mkdir(output_directory + "negative-to-zero/")
 os.mkdir(output_directory + "negative-to-zero/donetest")
+copyfile(runfile, output_directory + "negative-to-zero/map.py")
 
 os.mkdir(output_directory + "number-io/")
 os.mkdir(output_directory + "number-io/donetest")
+copyfile(runfile, output_directory + "number-io/map.py")
 
 os.mkdir(output_directory + "pig-latin/")
 os.mkdir(output_directory + "pig-latin/donetest")
+copyfile(runfile, output_directory + "pig-latin/map.py")
 
 os.mkdir(output_directory + "replace-space-with-newline/")
 os.mkdir(output_directory + "replace-space-with-newline/donetest")
+copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
 
 os.mkdir(output_directory + "scrabble-score/")
 os.mkdir(output_directory + "scrabble-score/donetest")
+copyfile(runfile, output_directory + "scrabble-score/map.py")
 
 os.mkdir(output_directory + "smallest/")
 os.mkdir(output_directory + "smallest/donetest")
+copyfile(runfile, output_directory + "smallest/map.py")
 
 os.mkdir(output_directory + "small-or-large/")
 os.mkdir(output_directory + "small-or-large/donetest")
+copyfile(runfile, output_directory + "small-or-large/map.py")
 
 os.mkdir(output_directory + "string-differences/")
 os.mkdir(output_directory + "string-differences/donetest")
+copyfile(runfile, output_directory + "string-differences/map.py")
 
 os.mkdir(output_directory + "string-lengths-backwards/")
 os.mkdir(output_directory + "string-lengths-backwards/donetest")
+copyfile(runfile, output_directory + "string-lengths-backwards/map.py")
 
 os.mkdir(output_directory + "sum-of-squares/")
 os.mkdir(output_directory + "sum-of-squares/donetest")
+copyfile(runfile, output_directory + "sum-of-squares/map.py")
 
 os.mkdir(output_directory + "super-anagrams/")
 os.mkdir(output_directory + "super-anagrams/donetest")
+copyfile(runfile, output_directory + "super-anagrams/map.py")
 
 os.mkdir(output_directory + "syllables/")
 os.mkdir(output_directory + "syllables/donetest")
+copyfile(runfile, output_directory + "syllables/map.py")
 
 os.mkdir(output_directory + "vector-average/")
 os.mkdir(output_directory + "vector-average/donetest")
+copyfile(runfile, output_directory + "vector-average/map.py")
 
 os.mkdir(output_directory + "vectors-summed/")
 os.mkdir(output_directory + "vectors-summed/donetest")
+copyfile(runfile, output_directory + "vectors-summed/map.py")
 
 os.mkdir(output_directory + "wallis-pi/")
 os.mkdir(output_directory + "wallis-pi/donetest")
+copyfile(runfile, output_directory + "wallis-pi/map.py")
 
 os.mkdir(output_directory + "word-stats/")
 os.mkdir(output_directory + "word-stats/donetest")
+copyfile(runfile, output_directory + "word-stats/map.py")
 
 os.mkdir(output_directory + "x-word-lines/")
 os.mkdir(output_directory + "x-word-lines/donetest")
+copyfile(runfile, output_directory + "x-word-lines/map.py")
 
 
 # Make alf file

@@ -301,20 +301,31 @@ def goodfuncs1():
 		#maximum number of occurances is equal to the number of programs
 		max_frequency = len(programs)
 		freqs = {}
+		locations = {}
 
 		#calculates the number of occurances
 		for program in programs:
+			#this length includes constants ******************I RECENTLY CHANGED THIS SECTION SO PLEASE DOUBLE CHECK IT WOOLSOCK
+			prog_len = len(program)
+
 			this_run = []
+
 			#print_prog(program)
-			for func in program:
+			for x in range(0, len(program)):
+
+				func = program[x]
+
 				#ACCOUNTS FOR CONSTANTS
 				is_constant = check_if_constant(func)
 				if (not is_constant) and not (func in this_run):
 					this_run.append(func)
 					if func in freqs:
 						freqs[func] += 1
+						locations[func] + [float(x) / prog_len]
 					else:
 						freqs[func] = 1
+						#x = location of function in program
+						locations[func] = [float(x) / prog_len]
 
 
 		#only does the rest if there are any solution programs for the problem in question

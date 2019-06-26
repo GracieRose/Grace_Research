@@ -40,7 +40,6 @@ import csv
 "/home/thelmuth/Results/clustering-bench/word-stats/lexicase/logs/"
 "/home/thelmuth/Results/clustering-bench/x-word-lines/lexicase/logs/"
 
-"""
 directories = {"/home/thelmuth/Results/clustering-bench/checksum/lexicase/logs/" : ["string_handling", "arithmetic", "I/O"],
                 "/home/thelmuth/Results/clustering-bench/checksum/baseline-uniform/logs/" : ["string_handling", "arithmetic", "I/O"],
                 "/home/thelmuth/Results/clustering-bench/checksum/ifs-7/logs/" : ["string_handling", "arithmetic", "I/O"],
@@ -97,25 +96,78 @@ directories = {"/home/thelmuth/Results/clustering-bench/checksum/lexicase/logs/"
                 "/home/thelmuth/Results/clustering-bench/word-stats/baseline-uniform/logs/" : ["file", "I/O", "string_handling", "arithmetic"],
                 "/home/thelmuth/Results/clustering-bench/x-word-lines/baseline-uniform/logs/" : ["I/O", "string_handling"]}
 
+"""
+#directories of all lexicase and baseline fly data files
+directories = ["/home/thelmuth/Results/clustering-bench/checksum/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/checksum/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/checksum/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/checksum/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/collatz-numbers/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/compare-string-lengths/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/count-odds/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/count-odds/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/count-odds/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/count-odds/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/digits/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/double-letters/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/double-letters/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/double-letters/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/double-letters/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/even-squares/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/for-loop-index/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/grade/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/last-index-of-zero/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/median/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/mirror-image/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/negative-to-zero/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/negative-to-zero/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/negative-to-zero/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/negative-to-zero/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/number-io/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/pig-latin/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/replace-space-with-newline/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/replace-space-with-newline/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/replace-space-with-newline/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/replace-space-with-newline/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/scrabble-score/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/scrabble-score/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/scrabble-score/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/scrabble-score/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/smallest/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/small-or-large/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/string-differences/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/string-lengths-backwards/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/string-lengths-backwards/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/string-lengths-backwards/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/string-lengths-backwards/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/sum-of-squares/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/super-anagrams/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/syllables/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/syllables/ifs-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/syllables/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/syllables/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/vector-average/lexicase/logs/",
+                "/home/thelmuth/Results/clustering-bench/vector-average/tourney-7/logs/",
+                "/home/thelmuth/Results/clustering-bench/vector-average/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/vectors-summed/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/wallis-pi/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/word-stats/baseline-uniform/logs/",
+                "/home/thelmuth/Results/clustering-bench/x-word-lines/baseline-uniform/logs/"]
+
 
 outputFilePrefix = "log"
 outputFileSuffix = ".txt"
 
 problems = ["number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
 
-
-#directories = ["C:/Users/livel/Desktop/tournament/number-io", "C:/Users/livel/Desktop/double-letters"]
-#directories = {"C:/Users/livel/Desktop/tournament/number-io" : ["I/O", "arithmetic"]}
-#directories = {"C:/Users/livel/Desktop/syllables" : ["I/O", "string_handling", "arithmetic"]}
-
-
+#if you want to print things, the second command line arguement must be print
 verbose = False
 if (len(sys.argv) >= 3 and sys.argv[2] == "print"):
     verbose = True
 
 
 def deparenthasize(lst):
-
+    """Removes the outside parenthesis of elements in a list"""
     newlst = []
         
     for i in range(0, len(lst)):
