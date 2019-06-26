@@ -68,7 +68,7 @@ if output_directory[-1] != "/":
 """if os.path.isdir(output_directory):
     raise RuntimeError("Output directory already exists")"""
 
-os.mkdir(output_directory)
+"""os.mkdir(output_directory)
 
 os.mkdir(output_directory + "checksum/")
 os.mkdir(output_directory + "checksum/donetest")
@@ -184,7 +184,7 @@ copyfile(runfile, output_directory + "word-stats/map.py")
 
 os.mkdir(output_directory + "x-word-lines/")
 os.mkdir(output_directory + "x-word-lines/donetest")
-copyfile(runfile, output_directory + "x-word-lines/map.py")
+copyfile(runfile, output_directory + "x-word-lines/map.py")"""
 
 
 # Make alf file
