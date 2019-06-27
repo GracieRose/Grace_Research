@@ -58,7 +58,7 @@ service_tag = "tom"
 
 ##########################################################################
 output_directory = "/home/gwoolson/Grace_Research/csvdata"
-runfile = "/home/gwoolson/Grace_Research/map.py"
+runfile = "/home/gwoolson/Grace_Research/fly_failedall.py"
 
 # Check to make sure directory doesn't exist; if not, create it
 if output_directory[-1] != "/":
