@@ -116,6 +116,7 @@ def stats(all_genomes):
 
 def find_path(directory):
     #ex: takes /home/gwoolson/csvdata/collatz-numbers/data2.csv -> /home/gwoolson/csvdata/collatz-numbers/
+    
     print directory
     
     if directory[-10] == "/":
