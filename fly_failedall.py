@@ -137,6 +137,7 @@ def collect():
     verbose = False
     if len(sys.argv) > 2:
         #outputDirectory = "C:/Users/livel/Desktop/Research"
+        #this indictes where to write stuff to
         outputDirectory = sys.argv[2]
         isdonepath = find_path(outputDirectory)
     else:
@@ -152,17 +153,18 @@ def collect():
         print("please provide a destination file in the format <filename>.csv")
         exit(1)
 
+    #becomes the empty file to indicate successful completion of the script
     isdonefile = isdonepath + "donetest/done%i.txt" % donenum 
 
-
+    #run%i.csv
     destfile = open(destination, mode="w")
     destwriter = csv.writer(destfile)
 
     all_funcs = []
     all_genomes = []
 
-
     #fileName = (outputFilePrefix + str(i) + outputFileSuffix)
+    #this opens the csv that was extracted to the local drive on the node
     f = open("/state/partition1/data%i.csv" % donenum)
 
     #success = False
