@@ -1,4 +1,5 @@
 import os, stat
+from shutil import copyfile
 
 ##########################################################################
 # Settings
@@ -57,6 +58,7 @@ service_tag = "tom"
 
 ##########################################################################
 output_directory = "/home/gwoolson/Grace_Research/csvdata"
+runfile = "/home/gwoolson/Grace_Research/map.py"
 
 # Check to make sure directory doesn't exist; if not, create it
 if output_directory[-1] != "/":
@@ -64,11 +66,15 @@ if output_directory[-1] != "/":
 """if os.path.isdir(output_directory):
     raise RuntimeError("Output directory already exists")"""
 
-os.mkdir(output_directory + "checksum/donetest")
+copyfile(runfile, output_directory + "checksum/fly_failedall.py")
 
-os.mkdir(output_directory + "collatz-numbers/donetest")
+copyfile(runfile, output_directory + "collatz-numbers/fly_failedall.py")
 
-os.mkdir(output_directory + "count-odds/donetest")
+copyfile(runfile, output_directory + "count-odds/fly_failedall.py")
+
+copyfile(runfile, output_directory + "syllables/fly_failedall.py")
+
+copyfile(runfile, output_directory + "vector-average/fly_failedall.py")
 
 # Make alf file
 #alf_file_string = output_directory + "clojush_runs.alf"
