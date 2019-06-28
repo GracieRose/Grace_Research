@@ -40,7 +40,7 @@ zip_start15 = "tar -xvzf /home/thelmuth/Results/clustering-bench/string-lengths-
 zip_start16 = "tar -xvzf /home/thelmuth/Results/clustering-bench/sum-of-squares/baseline-uniform/csv/data"
 zip_start17 = "tar -xvzf /home/thelmuth/Results/clustering-bench/super-anagrams/baseline-uniform/csv/data"
 zip_start18 = "tar -xvzf /home/thelmuth/Results/clustering-bench/syllables/lexicase/csv/data"
-zip_start19 = "tar -xvzf /home/thelmuth/Results/clustering-bench/vector-average/lexicase/csv/data"
+zip_start19 = "gunzip -c /home/thelmuth/Results/clustering-bench/vector-average/lexicase/csv/data"
 zip_start20 = "tar -xvzf /home/thelmuth/Results/clustering-bench/vectors-summed/baseline-uniform/csv/data"
 zip_start21 = "tar -xvzf /home/thelmuth/Results/clustering-bench/wallis-pi/baseline-uniform/csv/data"
 zip_start22 = "tar -xvzf /home/thelmuth/Results/clustering-bench/word-stats/baseline-uniform/csv/data"
@@ -53,6 +53,8 @@ zip_start28 = "tar -xvzf /home/thelmuth/Results/clustering-bench/digits/baseline
 zip_start29 = "tar -xvzf /home/thelmuth/Results/clustering-bench/double-letters/lexicase/csv/data"
 
 zip_end = ".csv.tar.gz -C /state/partition1/"
+vecavg_zend = ".csv.gz > /state/partition1/data"
+vecavg_zend2 = ".csv"
 
 service_tag = "tom"
 
@@ -114,7 +116,7 @@ for run in range(0, number_runs):
 
 for run in range(0, number_runs):
     intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
-    %s%i%s;" % (output_directory, zip_start19, run, zip_end)
+    %s%i%s%i%s;" % (output_directory, zip_start19, run, vecavg_zend, run, vecavg_zend2)
     command = "python fly_failedall.py run%i.csv %svector-average/data%i.csv;" % (run, output_directory, run)
     outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
 
