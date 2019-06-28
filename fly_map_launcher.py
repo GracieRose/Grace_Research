@@ -186,6 +186,11 @@ os.mkdir(output_directory + "x-word-lines/donetest")
 copyfile(runfile, output_directory + "x-word-lines/map.py")"""
 
 
+copyfile(runfile, output_directory + "vector-average/map.py")
+copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
+copyfile(runfile, output_directory + "double-letters/map.py")
+
+
 # Make alf file
 #alf_file_string = output_directory + "clojush_runs.alf"
 alf_file_string = output_directory + "clojush_scraping.alf"
@@ -211,8 +216,7 @@ for run in range(0, number_runs):
 
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages;\
-     %s%i%s;" % (output_directory, zip_start19, run, vecavg_zend)
+    intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s;" % (output_directory, zip_start19, run, vecavg_zend)
     command = "python map.py %svector-average/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
     outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
 
