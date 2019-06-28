@@ -126,7 +126,7 @@ def map():
     destfile = open(destination, mode="w")
     destwriter = csv.writer(destfile)
 
-    f = open(outputFile)
+    f = open("/state/partition1/data%i.csv" % donenum)
 
     gen = 0
     gencount = 0
