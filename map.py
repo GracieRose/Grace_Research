@@ -80,7 +80,7 @@ def find_funcs_and_simplify(genome, freqs):
 
             is_constant = check_if_constant(func)
             if (not is_constant) and (not func in funcslist):
-                
+
                 if func in freqs:
                     freqs[func] += 1
                 else:
@@ -155,7 +155,7 @@ def map():
                     #this ensures that the lists will always be in the same order
                     freqs[key] = 0
 
-                if gen = 0:
+                if gen == 0:
                     destwriter.writerow(funcslist)
 
                 destwriter.writerow(freqslist)
