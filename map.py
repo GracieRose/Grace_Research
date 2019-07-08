@@ -140,6 +140,9 @@ def map():
     for line in f:
         if not line.startswith("uuid"):
             
+            print line
+            print
+
             line = line.split(",")
             this_gen = int(line[1])
 
