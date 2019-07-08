@@ -102,6 +102,7 @@ def find_path(directory):
 
 
 def map():
+
     if len(sys.argv) > 1:
         outputFile = sys.argv[1]
         isdonepath = find_path(outputFile)
@@ -135,8 +136,6 @@ def map():
 
     for line in f:
         if not line.startswith("uuid"):
-
-            gencount += 1
             
             line = line.split(",")
             this_gen = int(line[1])
@@ -157,7 +156,9 @@ def map():
 
                 destwriter.writerow(["Gen %i" % this_gen])
                 gen = this_gen
+                gencount = 0  #7/8
 
+            gencount += 1   #7/8
 
             line = ",".join(line[7:-201])
 
