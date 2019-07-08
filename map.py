@@ -74,10 +74,13 @@ def find_funcs_and_simplify(genome, freqs):
     funcslist = []
 
     for i in range(0, len(genome) - 1):
+
         if genome[i] == ":instruction":
             func = genome[i+1][:-1]
+
             is_constant = check_if_constant(func)
             if (not is_constant) and (not func in funcslist):
+                
                 if func in freqs:
                     freqs[func] += 1
                 else:
@@ -149,9 +152,12 @@ def map():
                     #turns the frequency into a percentage
                     freqslist.append(freqs[key]/float(gencount))
 
+                    #this ensures that the lists will always be in the same order
                     freqs[key] = 0
 
-                destwriter.writerow(funcslist)
+                if gen = 0:
+                    destwriter.writerow(funcslist)
+
                 destwriter.writerow(freqslist)
 
                 destwriter.writerow(["Gen %i" % this_gen])
@@ -172,7 +178,7 @@ def map():
         funcslist.append(key)
         freqslist.append(freqs[key])
 
-    destwriter.writerow(funcslist)
+    #destwriter.writerow(funcslist)
     destwriter.writerow(freqslist)
 
     is_finished = open(isdonefile, mode="w")
