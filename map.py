@@ -176,7 +176,7 @@ def map():
     freqslist = []
     for key in freqs:
         funcslist.append(key)
-        freqslist.append(freqs[key])
+        freqslist.append(freqs[key]/float(gencount))
 
     #destwriter.writerow(funcslist)
     destwriter.writerow(freqslist)
