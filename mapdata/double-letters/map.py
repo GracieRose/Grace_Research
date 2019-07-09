@@ -74,10 +74,13 @@ def find_funcs_and_simplify(genome, freqs):
     funcslist = []
 
     for i in range(0, len(genome) - 1):
+
         if genome[i] == ":instruction":
             func = genome[i+1][:-1]
+
             is_constant = check_if_constant(func)
             if (not is_constant) and (not func in funcslist):
+
                 if func in freqs:
                     freqs[func] += 1
                 else:
@@ -102,6 +105,7 @@ def find_path(directory):
 
 
 def map():
+
     if len(sys.argv) > 1:
         outputFile = sys.argv[1]
         isdonepath = find_path(outputFile)
@@ -136,8 +140,6 @@ def map():
     for line in f:
         if not line.startswith("uuid"):
 
-            gencount += 1
-            
             line = line.split(",")
             this_gen = int(line[1])
 
@@ -150,14 +152,19 @@ def map():
                     #turns the frequency into a percentage
                     freqslist.append(freqs[key]/float(gencount))
 
+                    #this ensures that the lists will always be in the same order
                     freqs[key] = 0
 
-                destwriter.writerow(funcslist)
+                if gen == 0:
+                    destwriter.writerow(funcslist)
+
                 destwriter.writerow(freqslist)
 
                 destwriter.writerow(["Gen %i" % this_gen])
                 gen = this_gen
+                gencount = 0  #7/8
 
+            gencount += 1   #7/8
 
             line = ",".join(line[7:-201])
 
@@ -169,9 +176,9 @@ def map():
     freqslist = []
     for key in freqs:
         funcslist.append(key)
-        freqslist.append(freqs[key])
+        freqslist.append(freqs[key]/float(gencount))
 
-    destwriter.writerow(funcslist)
+    #destwriter.writerow(funcslist)
     destwriter.writerow(freqslist)
 
     is_finished = open(isdonefile, mode="w")
