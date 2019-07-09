@@ -80,13 +80,18 @@ for outputDirectory in directories:
         			func = funcs[i]
         			frequency = float(freqs[i])
 
+        			if func == "exec_do*whi":
+        				print outputDirectory+fileName
+        				print frequency
+
         			if func in all_gens[gen]:
         				all_gens[gen][func].append(frequency)
         			else:
         				all_gens[gen][func] = [frequency]
 
-
 gencount = 0
+funcs_printed = []
+to_print = []
 for generation_map in all_gens:
 
 	funcslist = []
@@ -96,17 +101,21 @@ for generation_map in all_gens:
 		frequencies = generation_map[function]
 
 		avg_freq = sum(frequencies) / len(frequencies)
-		print frequencies
+		#print frequencies
 		
 		funcslist.append(function)
 		freqslist.append(avg_freq)
-		#print avg_freq
-		#print
+		
+		"""if function == "exec_do*whi":
+			print frequencies, len(frequencies)
+			print avg_freq
+			print"""
 
 		genprint = "Gen %i" % gencount
 
-	if gencount == 0:
-		destwriter.writerow(funcslist)
+	#if gencount == 0:
+	destwriter.writerow(funcslist)
+	#funcs_printed = funcslist
 
 
 	destwriter.writerow(freqslist)
