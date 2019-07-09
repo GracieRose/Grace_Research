@@ -187,9 +187,63 @@ os.mkdir(output_directory + "x-word-lines/donetest")
 copyfile(runfile, output_directory + "x-word-lines/map.py")"""
 
 
-copyfile(runfile, output_directory + "vector-average/map.py")
-copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
+copyfile(runfile, output_directory + "checksum/map.py")
+
+copyfile(runfile, output_directory + "collatz-numbers/map.py")
+
+copyfile(runfile, output_directory + "compare-string-lengths/map.py")
+
+copyfile(runfile, output_directory + "count-odds/map.py")
+
+copyfile(runfile, output_directory + "digits/map.py")
+
 copyfile(runfile, output_directory + "double-letters/map.py")
+
+copyfile(runfile, output_directory + "even-squares/map.py")
+
+copyfile(runfile, output_directory + "for-loop-index/map.py")
+
+copyfile(runfile, output_directory + "grade/map.py")
+
+copyfile(runfile, output_directory + "last-index-of-zero/map.py")
+
+copyfile(runfile, output_directory + "median/map.py")
+
+copyfile(runfile, output_directory + "mirror-image/map.py")
+
+copyfile(runfile, output_directory + "negative-to-zero/map.py")
+
+copyfile(runfile, output_directory + "number-io/map.py")
+
+copyfile(runfile, output_directory + "pig-latin/map.py")
+
+copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
+
+copyfile(runfile, output_directory + "scrabble-score/map.py")
+
+copyfile(runfile, output_directory + "smallest/map.py")
+
+copyfile(runfile, output_directory + "small-or-large/map.py")
+
+copyfile(runfile, output_directory + "string-differences/map.py")
+
+copyfile(runfile, output_directory + "string-lengths-backwards/map.py")
+
+copyfile(runfile, output_directory + "sum-of-squares/map.py")
+
+copyfile(runfile, output_directory + "super-anagrams/map.py")
+
+copyfile(runfile, output_directory + "syllables/map.py")
+
+copyfile(runfile, output_directory + "vector-average/map.py")
+
+copyfile(runfile, output_directory + "vectors-summed/map.py")
+
+copyfile(runfile, output_directory + "wallis-pi/map.py")
+
+copyfile(runfile, output_directory + "word-stats/map.py")
+
+copyfile(runfile, output_directory + "x-word-lines/map.py")
 
 
 # Make alf file
@@ -202,9 +256,251 @@ Job -title {%s} -subtasks {
 """ % (title_string)
 
 #change this! Enter bash commands on the command line to do whatever you want, then enter those commands here, separated by ;
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %seven-squares/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start1, run, zip_end)
+    command = "python map.py %seven-squares/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
 
 for run in range(0, number_runs):
-    intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; %s%i%s%i%s;" % (output_directory, zip_start19, run, vecavg_zend, run, vecavg_zend2)
+    intro_command = "echo Starting run; cd %sfor-loop-index/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start2, run, zip_end)
+    command = "python map.py %sfor-loop-index/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sgrade/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start3, run, zip_end)
+    command = "python map.py %sgrade/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %slast-index-of-zero/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start4, run, zip_end)
+    command = "python map.py %slast-index-of-zero/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %smedian/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start5, run, zip_end)
+    command = "python map.py %smedian/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %smirror-image/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start6, run, zip_end)
+    command = "python map.py %smirror-image/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %snegative-to-zero/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start7, run, zip_end)
+    command = "python map.py %snegative-to-zero/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %snumber-io/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start8, run, zip_end)
+    command = "python map.py %snumber-io/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %spig-latin/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start9, run, zip_end)
+    command = "python map.py %spig-latin/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sreplace-space-with-newline/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start10, run, zip_end)
+    command = "python map.py %sreplace-space-with-newline/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sscrabble-score/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start11, run, zip_end)
+    command = "python map.py %sscrabble-score/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssmallest/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start12, run, zip_end)
+    command = "python map.py %ssmallest/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssmall-or-large/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start13, run, zip_end)
+    command = "python map.py %ssmall-or-large/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sstring-differences/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start14, run, zip_end)
+    command = "python map.py %sstring-differences/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sstring-lengths-backwards/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start15, run, zip_end)
+    command = "python map.py %sstring-lengths-backwards/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssum-of-squares/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start16, run, zip_end)
+    command = "python map.py %ssum-of-squares/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssuper-anagrams/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start17, run, zip_end)
+    command = "python map.py %ssuper-anagrams/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %ssyllables/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start18, run, zip_end)
+    command = "python map.py %ssyllables/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %svector-average/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s%i%s;" % (output_directory, zip_start19, run, vecavg_zend, run, vecavg_zend2)
     command = "python map.py %svector-average/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
     outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
 
@@ -214,6 +510,141 @@ for run in range(0, number_runs):
         RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
     }
 """ % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %svectors-summed/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start20, run, zip_end)
+    command = "python map.py %svectors-summed/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %swallis-pi/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start21, run, zip_end)
+    command = "python map.py %swallis-pi/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sword-stats/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start22, run, zip_end)
+    command = "python map.py %sword-stats/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sx-word-lines/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start23, run, zip_end)
+    command = "python map.py %sx-word-lines/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %schecksum/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start24, run, zip_end)
+    command = "python map.py %schecksum/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %scollatz-numbers/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start25, run, zip_end)
+    command = "python map.py %scollatz-numbers/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %scompare-string-lengths/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start26, run, zip_end)
+    command = "python map.py %scompare-string-lengths/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %scount-odds/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start27, run, zip_end)
+    command = "python map.py %scount-odds/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sdigits/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start28, run, zip_end)
+    command = "python map.py %sdigits/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
+for run in range(0, number_runs):
+    intro_command = "echo Starting run; cd %sdouble-letters/; export PYTHONHOME=/usr; export PYTHONPATH=$PYTHONPATH:/opt/sdsc/lib:/opt/sdsc/lib/python2.6/site-packages:/usr/lib64/python26.zip:/usr/lib64/python2.6/plat-linux2:/usr/lib64/python2.6/lib-tk:/usr/lib64/python2.6/lib-old:/usr/lib64/python2.6/lib-dynload:/usr/lib/python2.6/site-packages/setuptools-0.6c11-py2.6.egg-info:/usr/lib64/python2.6:/usr/lib64/python2.6/site-packages:/usr/lib/python2.6/site-packages; \
+    %s%i%s;" % (output_directory, zip_start29, run, zip_end)
+    command = "python map.py %sdouble-letters/data%i.csv mapdata%i.csv;" % (output_directory, run, run)
+    outro_command = "cd /state/partition1/; rm data%i.csv; echo Finished Run" % (run)
+
+    full_command = intro_command + command + outro_command
+
+    alfcode += """    Task -title {%s - run %i} -cmds {
+        RemoteCmd {/bin/sh -c {%s}} -service {%s} -tags {max20}
+    }
+""" % (title_string, run, full_command, service_tag)
+
 
 
 alfcode += "}\n"
