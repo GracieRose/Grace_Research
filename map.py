@@ -76,7 +76,15 @@ def find_funcs_and_simplify(genome, freqs):
     for i in range(0, len(genome) - 1):
 
         if genome[i] == ":instruction":
-            func = genome[i+1][:-1]
+            
+            func = genome[i+1]
+
+            if func[-1] == ",":
+                func = func[:-1]
+
+            if func == "exec_do*whi":
+                print genome
+                print
 
             is_constant = check_if_constant(func)
             if (not is_constant) and (not func in funcslist):
@@ -109,6 +117,12 @@ def map():
     if len(sys.argv) > 1:
         outputFile = sys.argv[1]
         isdonepath = find_path(outputFile)
+
+        if ("double-letters" in outputFile) or ("replace-space-with-newline" in outputFile) or ("string-lengths-backwards" in outputFile) or ("vector-average" in outputFile):
+            tests = -101
+
+        elif ("count-odds" in outputFile) or ("negative-to-zero" in outputFile) or ("scrabble-score" in outputFile) or ("checksum" in outputFile) or ("syllables" in outputFile):
+            tests = -201
 
     else:
         print "Please provide a file to read"
@@ -143,7 +157,7 @@ def map():
             line = line.split(",")
             this_gen = int(line[1])
 
-            if this_gen != gen:
+            if this_gen != gen: 
 
                 funcslist = []
                 freqslist = []
@@ -157,6 +171,11 @@ def map():
 
                 if gen == 0:
                     destwriter.writerow(funcslist)
+                
+                """if "exec_do*whi" in funcslist:
+                    print line
+                    print funcslist
+                    print"""
 
                 destwriter.writerow(freqslist)
 
@@ -165,11 +184,16 @@ def map():
                 gencount = 0  #7/8
 
             gencount += 1   #7/8
-
-            line = ",".join(line[7:-201])
+            
+            print line
+            
+            line = ",".join(line[7:tests])
 
             line = debracket(deparenthasize(line[1:-1].split()))
             
+            print line
+            print
+
             freqs = find_funcs_and_simplify(line, freqs)
 
     funcslist = []
