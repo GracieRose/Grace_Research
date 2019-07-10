@@ -82,10 +82,6 @@ def find_funcs_and_simplify(genome, freqs):
             if func[-1] == ",":
                 func = func[:-1]
 
-            if func == "exec_do*whi":
-                print genome
-                print
-
             is_constant = check_if_constant(func)
             if (not is_constant) and (not func in funcslist):
 
@@ -171,29 +167,19 @@ def map():
 
                 if gen == 0:
                     destwriter.writerow(funcslist)
-                
-                """if "exec_do*whi" in funcslist:
-                    print line
-                    print funcslist
-                    print"""
 
                 destwriter.writerow(freqslist)
 
                 destwriter.writerow(["Gen %i" % this_gen])
                 gen = this_gen
-                gencount = 0  #7/8
+                gencount = 0  
 
-            gencount += 1   #7/8
-            
-            print line
-            
+            gencount += 1  
+                        
             line = ",".join(line[7:tests])
 
             line = debracket(deparenthasize(line[1:-1].split()))
             
-            print line
-            print
-
             freqs = find_funcs_and_simplify(line, freqs)
 
     funcslist = []
