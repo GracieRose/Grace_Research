@@ -16,7 +16,6 @@ directories = ["C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/che
 				"C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/syllables/",
 				"C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/vector-average/"]
 
-
 outputFilePrefix = "mapdata"
 outputFileSuffix = ".csv"
 
