@@ -3,11 +3,6 @@ import sys
 import csv
 
 
-def convert_float(num):
-
-	pass
-
-
 # Make a verison of this that will run on HPC
 #directories = ["/home/gwoolson/research/gwoolson/Grace_Research/mapdata/checksum"]
 
@@ -21,6 +16,7 @@ directories = ["C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/che
 				"C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/syllables/",
 				"C:/Users/livel/Documents/Research2019/Grace_Research/mapdata/vector-average/"]
 
+
 outputFilePrefix = "mapdata"
 outputFileSuffix = ".csv"
 
@@ -32,7 +28,7 @@ else:
     exit(1)
 
 
-destfile = open(destination, mode="w")
+destfile = open(destination, mode="wb")
 destwriter = csv.writer(destfile)
 
 all_gens = []
@@ -64,25 +60,21 @@ for outputDirectory in directories:
         		if len(all_gens) <= gen:
         			all_gens.append({})
 
-        	elif line.startswith("0"):
+        	elif line.startswith("0") or line.startswith("1.0"):
         		freqs = line[:-1].split(",")
         		#print "freqs: ", freqs
         		#print
 
         	else:
         		funcs = line[:-1].split(",")
-        		#print "funcs: ", funcs
 
         	if freqs == line[:-1].split(","):
 
         		for i in range(0, len(funcs)):
 
         			func = funcs[i]
-        			frequency = float(freqs[i])
 
-        			if func == "exec_do*whi":
-        				print outputDirectory+fileName
-        				print frequency
+        			frequency = float(freqs[i])
 
         			if func in all_gens[gen]:
         				all_gens[gen][func].append(frequency)
@@ -95,9 +87,10 @@ to_print = []
 for generation_map in all_gens:
 
 	funcslist = []
-	freqslist = []
+	freqslist = [] 
 	
 	for function in generation_map:
+
 		frequencies = generation_map[function]
 
 		avg_freq = sum(frequencies) / len(frequencies)
@@ -113,8 +106,8 @@ for generation_map in all_gens:
 
 		genprint = "Gen %i" % gencount
 
-	#if gencount == 0:
-	destwriter.writerow(funcslist)
+	if gencount == 0:
+		destwriter.writerow(funcslist)
 	#funcs_printed = funcslist
 
 

@@ -84,7 +84,7 @@ def stats(all_genomes):
 
     for (genome, errors) in all_genomes:
 
-        #only collects data for programs that completely fail*************************
+        #only collects data for programs that completely fail
         if not "0" in errors:
             this_run = []
             count += 1
@@ -129,12 +129,10 @@ def find_path(directory):
 
 
 def collect():
-
     #problems = ["number-io", "checksum", "collatz-numbers", "compare-string-lengths", "count-odds", "digits", "double-letters", "even-squares", "for-loop-index", "grade", "last-index-of-zero", "median", "mirror-image", "negative-to-zero", "pig-latin", "replace-space-with-newline", "scrabble-score", "small-or-large", "smallest", "string-differences", "string-lengths-backwards", "sum-of-squares", "super-anagrams", "syllables", "vector-average", "vectors-summed", "wallis-pi", "word-stats", "x-word-lines"]
 
     #outputFilePrefix = "data"
     #outputFileSuffix = ".csv"
-
 
     verbose = False
     if len(sys.argv) > 2:
@@ -158,7 +156,6 @@ def collect():
     #becomes the empty file to indicate successful completion of the script
     isdonefile = isdonepath + "donetest/done%i.txt" % donenum 
 
-    #run%i.csv
     destfile = open(destination, mode="w")
     destwriter = csv.writer(destfile)
 
