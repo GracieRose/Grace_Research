@@ -217,7 +217,7 @@ copyfile(runfile, output_directory + "negative-to-zero/map.py")
 
 #copyfile(runfile, output_directory + "pig-latin/map.py")
 
-#copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
+copyfile(runfile, output_directory + "replace-space-with-newline/map.py")
 
 copyfile(runfile, output_directory + "scrabble-score/map.py")
 

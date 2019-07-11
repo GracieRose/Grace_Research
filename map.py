@@ -114,10 +114,10 @@ def map():
         outputFile = sys.argv[1]
         isdonepath = find_path(outputFile)
 
-        if ("double-letters" in outputFile) or ("replace-space-with-newline" in outputFile) or ("string-lengths-backwards" in outputFile) or ("vector-average" in outputFile):
+        if ("double-letters" in outputFile) or ("string-lengths-backwards" in outputFile) or ("vector-average" in outputFile):
             tests = -101
 
-        elif ("count-odds" in outputFile) or ("negative-to-zero" in outputFile) or ("scrabble-score" in outputFile) or ("checksum" in outputFile) or ("syllables" in outputFile):
+        elif ("count-odds" in outputFile) or ("negative-to-zero" in outputFile) or ("scrabble-score" in outputFile) or ("checksum" in outputFile) or ("syllables" in outputFile) or ("replace-space-with-newline" in outputFile):
             tests = -201
 
     else:
@@ -175,11 +175,16 @@ def map():
                 gencount = 0  
 
             gencount += 1  
-                        
-            line = ",".join(line[7:tests])
+
+            if "replace-space-with-newline" in outputFile:
+                line = ",".join(line[7:tests])
+                genome_start = line.index(":instruction") - 3
+                line = line[genome_start:]
+            else:
+                line = ",".join(line[7:tests])
 
             line = debracket(deparenthasize(line[1:-1].split()))
-            
+
             freqs = find_funcs_and_simplify(line, freqs)
 
     funcslist = []
