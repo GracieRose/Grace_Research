@@ -2,6 +2,39 @@ import os
 import sys
 import csv
 
+def find_funcs(directories):
+
+	all_funcs = []
+
+	outputFilePrefix = "mapdata"
+	outputFileSuffix = ".csv"
+
+	for outputDirectory in directories:
+
+	    if outputDirectory[-1] != '/':
+	        outputDirectory += '/'
+	    dirList = os.listdir(outputDirectory)
+
+	    z = 0
+	    while (outputFilePrefix + str(z) + outputFileSuffix) in dirList:
+
+	        fileName = (outputFilePrefix + str(z) + outputFileSuffix)
+	        f = open(outputDirectory + fileName)
+	        z += 1
+
+	        funcs = []
+
+	        for line in f:
+
+	        	if (not line.startswith("Gen ")) and (not (line.startswith("0") or line.startswith("1.0"))):
+	        		funcs = line[:-1].split(",")
+
+	        		for item in funcs:
+	        			if not item in all_funcs:
+	        				all_funcs.append(item)
+
+	return all_funcs
+
 
 # Make a verison of this that will run on HPC
 #directories = ["/home/gwoolson/research/gwoolson/Grace_Research/mapdata/checksum"]
@@ -30,6 +63,7 @@ else:
 destfile = open(destination, mode="wb")
 destwriter = csv.writer(destfile)
 
+all_funcs = find_funcs(directories)
 all_gens = []
 
 for outputDirectory in directories:
@@ -39,7 +73,6 @@ for outputDirectory in directories:
     if outputDirectory[-1] != '/':
         outputDirectory += '/'
     dirList = os.listdir(outputDirectory)
-
 
     z = 0
     while (outputFilePrefix + str(z) + outputFileSuffix) in dirList:
@@ -61,56 +94,54 @@ for outputDirectory in directories:
 
         	elif line.startswith("0") or line.startswith("1.0"):
         		freqs = line[:-1].split(",")
-        		#print "freqs: ", freqs
-        		#print
 
         	else:
         		funcs = line[:-1].split(",")
 
         	if freqs == line[:-1].split(","):
 
-        		for i in range(0, len(funcs)):
+        		for i in range(0, len(all_funcs)):
 
-        			func = funcs[i]
+        			func = all_funcs[i]
 
-        			frequency = float(freqs[i])
+        			if func in funcs:
+        				funcindex = funcs.index(func)
+	        			frequency = float(freqs[funcindex])
+	        		else:
+	        			frequency = 0.0
 
         			if func in all_gens[gen]:
         				all_gens[gen][func].append(frequency)
         			else:
         				all_gens[gen][func] = [frequency]
 
-gencount = 0
+
+header = True
 funcs_printed = []
 to_print = []
 for generation_map in all_gens:
 
-	funcslist = []
+	#use all_funcs instead
+	#funcslist = []
 	freqslist = [] 
 	
-	for function in generation_map:
+	for function in all_funcs:
+
+		#debugging
+		#print all_funcs[counter]
+		#print all_gens[0][all_funcs[0]]
+		#print sum(all_gens[0][all_funcs[counter]]) / len(all_gens[0][all_funcs[counter]])
 
 		frequencies = generation_map[function]
 
 		avg_freq = sum(frequencies) / len(frequencies)
-		#print frequencies
-		
-		funcslist.append(function)
+
 		freqslist.append(avg_freq)
-		
-		"""if function == "exec_do*whi":
-			print frequencies, len(frequencies)
-			print avg_freq
-			print"""
 
-		genprint = "Gen %i" % gencount
-
-	if gencount == 0:
-		destwriter.writerow(funcslist)
-	#funcs_printed = funcslist
-
+	if header:
+		destwriter.writerow(all_funcs)
+		header = False
 
 	destwriter.writerow(freqslist)
-	gencount += 1
 
 #print all_gens
