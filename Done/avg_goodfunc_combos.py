@@ -30,6 +30,32 @@ def add_freqs(func, freqs):
 
 
 
+def fix_strings(program):
+	
+	print program
+
+	newprog = []
+	stringy = False
+
+	for item in program:
+		if stringy:
+			if item.endswith('"""'):
+				stringy = False
+			newprog[-1] = newprog[-1] + item
+
+		elif item.startswith('"""'):
+			stringy = True
+			newprog.append(item)
+
+		else:
+			newprog.append(item)
+
+	print
+	print newprog
+
+	return newprog
+
+
 
 def simplify(program):
 
@@ -49,21 +75,15 @@ def significance(f1, f2, freqs, pairs):
 	
 	significant = False
 
-	#if abs(freqs[f1] - freqs[f2]) < 30:
+	if abs(freqs[f1] - freqs[f2]) < 50:
 
-	if freqs[f1] <= freqs[f2]:
-		if pairs[(f1, f2)] >= (1 * freqs[f1]):
-			significant = True
+		if freqs[f1] <= freqs[f2]:
+			if pairs[(f1, f2)] >= (.9 * freqs[f1]):
+				significant = True
 
-	else:
-		if pairs[(f1, f2)] >= (1 * freqs[f2]):
-			significant = True
-
-	if f1 == "in1" or f2 == "in1":
-		significant = False
-
-	if f1 == "in2" or f2 == "in2":
-		significant = False
+		else:
+			if pairs[(f1, f2)] >= (.9 * freqs[f2]):
+				significant = True
 
 	return significant
 
@@ -76,6 +96,8 @@ def calculate_distances(all_progs):
 	counts = {}
 
 	for program in all_progs:
+
+		program = fix_strings(program)
 
 		for i in range(0, len(program) - 1):
 
@@ -95,10 +117,11 @@ def calculate_distances(all_progs):
 						if (func, other) in dists:
 							dists[(func, other)] += [distance]
 							counts[(func, other)] += 1
-							
-						elif (other, func) in dists:
-							dists[(other, func)] += [distance]
-							counts[(other, func)] += 1
+						
+						#comment this line out for ordered	
+						#elif (other, func) in dists:
+						#	dists[(other, func)] += [distance]
+						#	counts[(other, func)] += 1
 
 						else:
 							dists[(func, other)] = [distance]
@@ -129,12 +152,6 @@ def simplified_pairs():
 	(dists, counts) = calculate_distances(all_progs)
 
 	for oprogram in all_progs:
-
-		if "float_flush" in oprogram:
-			if "float_add" in oprogram:
-				print oprogram
-				print
-
 
 		program = simplify(oprogram)
 

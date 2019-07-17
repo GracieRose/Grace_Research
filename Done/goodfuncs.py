@@ -154,7 +154,7 @@ def get_funcs_list(organized_programs):
 		max_frequency = len(programs)
 		freqs = {}
 
-		#goes throuhgh each program that solved the problem
+		#goes through each program that solved the problem
 		for program in programs:
 
 			#keeps track of if we have counted this fxn in this program yet
@@ -340,7 +340,10 @@ def goodfuncs1():
 
 		#calculates the number of occurances
 		for program in programs:
-			#this length includes constants ******************I RECENTLY CHANGED THIS SECTION SO PLEASE DOUBLE CHECK IT WOOLSOCK
+
+			program = fix_strings(program)  #7/16 ******************I RECENTLY CHANGED THIS SECTION SO PLEASE DOUBLE CHECK IT WOOLSOCK
+
+			#this length includes constants 
 			prog_len = len(program)
 
 			this_run = []
@@ -915,8 +918,8 @@ def goodfuncs2(): #DOES NOT CALCULATE LOCATION
 
 def main():
 
-	#goodfuncs1()
-	fix_strings(['""""', 'v', 'rh:P/', '"Ao6\'\\\\f"""', 'string_first', 'in1', '\\newline', 'string_replacechar', 'print_string', 'in1', 'string_split', 'string_concat', 'string_concat', 'string_concat', 'exec_eq', 'boolean_not', 'string_dup', 'string_concat', 'string_concat', 'string_concat', 'string_stackdepth', 'string_concat', 'string_dup', 'string_nth', 'string_concat', 'string_concat', 'string_length'])
+	goodfuncs1()
+	#fix_strings(['""""', 'v', 'rh:P/', '"Ao6\'\\\\f"""', 'string_first', 'in1', '\\newline', 'string_replacechar', 'print_string', 'in1', 'string_split', 'string_concat', 'string_concat', 'string_concat', 'exec_eq', 'boolean_not', 'string_dup', 'string_concat', 'string_concat', 'string_concat', 'string_stackdepth', 'string_concat', 'string_dup', 'string_nth', 'string_concat', 'string_concat', 'string_length'])
 	#print(['""""', 'v', 'rh:P/', '"Ao6\'\\\\f"""', 'string_first', 'in1', '\\newline', 'string_replacechar', 'print_string', 'in1', 'string_split', 'string_concat', 'string_concat', 'string_concat', 'exec_eq', 'boolean_not', 'string_dup', 'string_concat', 'string_concat', 'string_concat', 'string_stackdepth', 'string_concat', 'string_dup', 'string_nth', 'string_concat', 'string_concat', 'string_length'])
 
 if __name__ == '__main__':
